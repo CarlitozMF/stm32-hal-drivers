@@ -1,0 +1,484 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Driver LCD STM32 HD44780: Archivo de código fuente lcd_STM32.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Driver LCD STM32 HD44780<span id="projectnumber">&#160;2.1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Buscar',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">lcd_STM32.c</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="lcd___s_t_m32_8c.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="lcd___s_t_m32_8h.html">lcd_STM32.h</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">/* ========================================================================== */</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">/*                          DEFINICIONES PRIVADAS                             */</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">/* ========================================================================== */</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">/* Comandos del HD44780 */</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="lcd___s_t_m32_8c.html#a297b2c9447670639c97dd56f22205a58">   19</a></span><span class="preprocessor">#define LCD_CMD_CLEAR          0x01U  </span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="lcd___s_t_m32_8c.html#a1545150065fabc082fe1899018138cb5">   20</a></span><span class="preprocessor">#define LCD_CMD_ENTRY_MODE     0x06U  </span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="lcd___s_t_m32_8c.html#a0d333ac389595d1f677ab6e1e0a58e74">   21</a></span><span class="preprocessor">#define LCD_CMD_DISPLAY_OFF    0x08U  </span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="lcd___s_t_m32_8c.html#a5cdc0f50b0d93720dda1511e54ab30a7">   22</a></span><span class="preprocessor">#define LCD_CMD_FUNCTION_SET   0x28U  </span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="lcd___s_t_m32_8c.html#aad59809458608f42eea90180b56b3e17">   23</a></span><span class="preprocessor">#define LCD_CMD_SET_CGRAM      0x40U  </span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="lcd___s_t_m32_8c.html#ac019ce6dc1d44645a653de74e84bbe18">   24</a></span><span class="preprocessor">#define LCD_CMD_SET_DDRAM      0x80U  </span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="lcd___s_t_m32_8c.html#a131c2908ae9743e4b7037f92661b0d58">   27</a></span><span class="preprocessor">#define LCD_FLOAT_MAX_VALUE    2.0e9f</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">/* Instancia estática privada para almacenar la configuración de hardware del LCD */</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">static</span> <a class="code hl_struct" href="struct_l_c_d___config__t.html">LCD_Config_t</a> _lcd;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">/* ========================================================================== */</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">/*                         FUNCIONES PRIVADAS (BAJO NIVEL)                    */</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">/* ========================================================================== */</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span></div>
+<div class="foldopen" id="foldopen00039" data-start="{" data-end="}">
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="lcd___s_t_m32_8c.html#aa90b4cda0e82f63c3de1617cdf996ab4">   39</a></span><span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="lcd___s_t_m32_8c.html#aa90b4cda0e82f63c3de1617cdf996ab4">LCD_PulseEnable</a>(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    HAL_GPIO_WritePin(_lcd.port_en, _lcd.pin_en, GPIO_PIN_RESET);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <a class="code hl_function" href="utils_8h.html#a6e0ad966a3cc9a6100d4c41f5f653a3d">Utils_DelayUs</a>(2);   <span class="comment">// Asegura EN en bajo antes del flanco (tiempo de setup de datos)</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    HAL_GPIO_WritePin(_lcd.port_en, _lcd.pin_en, GPIO_PIN_SET);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <a class="code hl_function" href="utils_8h.html#a6e0ad966a3cc9a6100d4c41f5f653a3d">Utils_DelayUs</a>(15);  <span class="comment">// Ancho mínimo del pulso en Enable (alto): &gt; 450 ns</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    HAL_GPIO_WritePin(_lcd.port_en, _lcd.pin_en, GPIO_PIN_RESET);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <a class="code hl_function" href="utils_8h.html#a6e0ad966a3cc9a6100d4c41f5f653a3d">Utils_DelayUs</a>(50);  <span class="comment">// Tiempo de ejecución de la mayoría de comandos (~37 us)</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>}</div>
+</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span></div>
+<div class="foldopen" id="foldopen00052" data-start="{" data-end="}">
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="lcd___s_t_m32_8c.html#a02a11471566ae2b8d86e950342f98c75">   52</a></span><span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="lcd___s_t_m32_8c.html#a02a11471566ae2b8d86e950342f98c75">LCD_SendNibble</a>(uint8_t nibble) {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    HAL_GPIO_WritePin(_lcd.port_d4, _lcd.pin_d4, (nibble &amp; 0x01) ? GPIO_PIN_SET : GPIO_PIN_RESET);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    HAL_GPIO_WritePin(_lcd.port_d5, _lcd.pin_d5, (nibble &amp; 0x02) ? GPIO_PIN_SET : GPIO_PIN_RESET);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    HAL_GPIO_WritePin(_lcd.port_d6, _lcd.pin_d6, (nibble &amp; 0x04) ? GPIO_PIN_SET : GPIO_PIN_RESET);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    HAL_GPIO_WritePin(_lcd.port_d7, _lcd.pin_d7, (nibble &amp; 0x08) ? GPIO_PIN_SET : GPIO_PIN_RESET);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <a class="code hl_function" href="lcd___s_t_m32_8c.html#aa90b4cda0e82f63c3de1617cdf996ab4">LCD_PulseEnable</a>();</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>}</div>
+</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span></div>
+<div class="foldopen" id="foldopen00066" data-start="{" data-end="}">
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="lcd___s_t_m32_8c.html#a2a6e088177e1e93fae263dbac56cc731">   66</a></span><span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="lcd___s_t_m32_8c.html#a2a6e088177e1e93fae263dbac56cc731">LCD_SendByte</a>(uint8_t <span class="keywordtype">byte</span>, uint8_t is_data) {</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="comment">// Configurar el pin Register Select (RS): 0 = Instrucción, 1 = Registro de datos</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    HAL_GPIO_WritePin(_lcd.port_rs, _lcd.pin_rs, is_data ? GPIO_PIN_SET : GPIO_PIN_RESET);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="comment">// Transmitir primero el nibble alto y luego el nibble bajo</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <a class="code hl_function" href="lcd___s_t_m32_8c.html#a02a11471566ae2b8d86e950342f98c75">LCD_SendNibble</a>(<span class="keywordtype">byte</span> &gt;&gt; 4);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <a class="code hl_function" href="lcd___s_t_m32_8c.html#a02a11471566ae2b8d86e950342f98c75">LCD_SendNibble</a>(<span class="keywordtype">byte</span> &amp; 0x0F);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>}</div>
+</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span></div>
+<div class="foldopen" id="foldopen00079" data-start="{" data-end="}">
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="lcd___s_t_m32_8c.html#a1e120a561468a57999cc8872a52c12ea">   79</a></span><span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="lcd___s_t_m32_8c.html#a1e120a561468a57999cc8872a52c12ea">LCD_PrintUInt</a>(uint32_t value) {</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordtype">char</span> buffer[10]; <span class="comment">// UINT32_MAX tiene 10 dígitos</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    uint8_t i = 0;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordflow">if</span> (value == 0) {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gab0bfa8e6a5ecf32e685152b5c6cf4868">LCD_WriteChar</a>(<span class="charliteral">&#39;0&#39;</span>);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    }</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="comment">// Extraer dígitos de menor a mayor peso</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordflow">while</span> (value &gt; 0) {</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        buffer[i++] = (char)(<span class="charliteral">&#39;0&#39;</span> + (value % 10));</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        value /= 10;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    }</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="comment">// Volcar los caracteres en orden correcto invirtiendo el búfer auxiliar</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordflow">while</span> (i &gt; 0) {</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gab0bfa8e6a5ecf32e685152b5c6cf4868">LCD_WriteChar</a>(buffer[--i]);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    }</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>}</div>
+</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="comment">/* ========================================================================== */</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="comment">/*                              API PÚBLICA                                   */</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="comment">/* ========================================================================== */</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="foldopen" id="foldopen00104" data-start="{" data-end="}">
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="group___l_c_d___s_t_m32.html#ga36d493654e270263ce0ea9bc36b53b38">  104</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga36d493654e270263ce0ea9bc36b53b38">LCD_Init</a>(<span class="keyword">const</span> <a class="code hl_struct" href="struct_l_c_d___config__t.html">LCD_Config_t</a> *config) {</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keywordflow">if</span> (config == NULL) <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    _lcd = *config;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <a class="code hl_function" href="utils_8h.html#ad77e44a104dcf055df7f34bd7efa65ef">Utils_DelayUs_Init</a>();</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="comment">// Estado inicial seguro: todas las líneas en bajo (RS=0 es obligatorio para la secuencia)</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    HAL_GPIO_WritePin(_lcd.port_rs, _lcd.pin_rs, GPIO_PIN_RESET);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    HAL_GPIO_WritePin(_lcd.port_en, _lcd.pin_en, GPIO_PIN_RESET);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    HAL_GPIO_WritePin(_lcd.port_d4, _lcd.pin_d4, GPIO_PIN_RESET);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    HAL_GPIO_WritePin(_lcd.port_d5, _lcd.pin_d5, GPIO_PIN_RESET);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    HAL_GPIO_WritePin(_lcd.port_d6, _lcd.pin_d6, GPIO_PIN_RESET);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    HAL_GPIO_WritePin(_lcd.port_d7, _lcd.pin_d7, GPIO_PIN_RESET);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    HAL_Delay(50); <span class="comment">// Estabilización inicial de VDD (&gt;15 ms tras encendido)</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="comment">// Secuencia obligatoria de reseteo por software para forzar el modo de 4 bits</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <a class="code hl_function" href="lcd___s_t_m32_8c.html#a02a11471566ae2b8d86e950342f98c75">LCD_SendNibble</a>(0x03); HAL_Delay(5);  <span class="comment">// &gt; 4.1 ms</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <a class="code hl_function" href="lcd___s_t_m32_8c.html#a02a11471566ae2b8d86e950342f98c75">LCD_SendNibble</a>(0x03); HAL_Delay(1);  <span class="comment">// &gt; 100 us</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <a class="code hl_function" href="lcd___s_t_m32_8c.html#a02a11471566ae2b8d86e950342f98c75">LCD_SendNibble</a>(0x03); HAL_Delay(1);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <a class="code hl_function" href="lcd___s_t_m32_8c.html#a02a11471566ae2b8d86e950342f98c75">LCD_SendNibble</a>(0x02); HAL_Delay(1);  <span class="comment">// Conmutación definitiva a interfaz de 4 bits</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="comment">// Comandos de configuración inicial (orden indicado por el datasheet)</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <a class="code hl_function" href="lcd___s_t_m32_8c.html#a2a6e088177e1e93fae263dbac56cc731">LCD_SendByte</a>(<a class="code hl_define" href="lcd___s_t_m32_8c.html#a5cdc0f50b0d93720dda1511e54ab30a7">LCD_CMD_FUNCTION_SET</a>, 0); <span class="comment">// 4 bits, 2 líneas, matriz de 5x8 puntos</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <a class="code hl_function" href="lcd___s_t_m32_8c.html#a2a6e088177e1e93fae263dbac56cc731">LCD_SendByte</a>(<a class="code hl_define" href="lcd___s_t_m32_8c.html#a0d333ac389595d1f677ab6e1e0a58e74">LCD_CMD_DISPLAY_OFF</a>, 0);  <span class="comment">// Display apagado durante la configuración</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gae60d0b62d7eb3fa31266c095d7b3c245">LCD_Clear</a>();                           <span class="comment">// Borra la memoria y posiciona el cursor en (0,0)</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <a class="code hl_function" href="lcd___s_t_m32_8c.html#a2a6e088177e1e93fae263dbac56cc731">LCD_SendByte</a>(<a class="code hl_define" href="lcd___s_t_m32_8c.html#a1545150065fabc082fe1899018138cb5">LCD_CMD_ENTRY_MODE</a>, 0);   <span class="comment">// Cursor incrementa hacia la derecha, sin shift</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <a class="code hl_function" href="lcd___s_t_m32_8c.html#a2a6e088177e1e93fae263dbac56cc731">LCD_SendByte</a>(<a class="code hl_enumvalue" href="group___l_c_d___s_t_m32.html#gga79a87f821848bfd98ff4109be3a14c7aab730f8e6f6ef0c88fd684715fb543e02">LCD_CURSOR_OFF</a>, 0);       <span class="comment">// Display ENCENDIDO, cursor APAGADO, sin parpadeo</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>}</div>
+</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="foldopen" id="foldopen00134" data-start="{" data-end="}">
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="group___l_c_d___s_t_m32.html#gae60d0b62d7eb3fa31266c095d7b3c245">  134</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gae60d0b62d7eb3fa31266c095d7b3c245">LCD_Clear</a>(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <a class="code hl_function" href="lcd___s_t_m32_8c.html#a2a6e088177e1e93fae263dbac56cc731">LCD_SendByte</a>(<a class="code hl_define" href="lcd___s_t_m32_8c.html#a297b2c9447670639c97dd56f22205a58">LCD_CMD_CLEAR</a>, 0);</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    HAL_Delay(2); <span class="comment">// El comando Clear requiere un tiempo de ejecución extendido (~1.52 ms)</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>}</div>
+</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="foldopen" id="foldopen00139" data-start="{" data-end="}">
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="group___l_c_d___s_t_m32.html#ga976c96eaf59a5c2bcb52cbae19a45493">  139</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga976c96eaf59a5c2bcb52cbae19a45493">LCD_SetCursor</a>(uint8_t row, uint8_t col) {</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="comment">// Direcciones base de DDRAM de cada fila. En el 20x4 las filas 2 y 3 son</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="comment">// continuación de las filas 0 y 1 (por eso 0x14 y 0x54).</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <span class="keyword">static</span> <span class="keyword">const</span> uint8_t row_offsets[4] = {0x00, 0x40, 0x14, 0x54};</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    uint8_t max_row = (_lcd.type == <a class="code hl_enumvalue" href="group___l_c_d___s_t_m32.html#ggaf4b71961185e1fa00ee5962123a349aeaf6f53abfb4787485a5f855349c16294b">LCD_20X4</a>) ? 3 : 1;</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    uint8_t max_col = (_lcd.type == <a class="code hl_enumvalue" href="group___l_c_d___s_t_m32.html#ggaf4b71961185e1fa00ee5962123a349aeaf6f53abfb4787485a5f855349c16294b">LCD_20X4</a>) ? 19 : 15;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="comment">// Saturar parámetros para evitar accesos fuera de la tabla o direcciones inválidas</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="keywordflow">if</span> (row &gt; max_row) row = max_row;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="keywordflow">if</span> (col &gt; max_col) col = max_col;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <a class="code hl_function" href="lcd___s_t_m32_8c.html#a2a6e088177e1e93fae263dbac56cc731">LCD_SendByte</a>((uint8_t)(<a class="code hl_define" href="lcd___s_t_m32_8c.html#ac019ce6dc1d44645a653de74e84bbe18">LCD_CMD_SET_DDRAM</a> + row_offsets[row] + col), 0);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>}</div>
+</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="foldopen" id="foldopen00154" data-start="{" data-end="}">
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno"><a class="line" href="group___l_c_d___s_t_m32.html#gae7816d8801b77a06a57bcdc1f01c3960">  154</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gae7816d8801b77a06a57bcdc1f01c3960">LCD_Print</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *str) {</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keywordflow">if</span> (str == NULL) <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="keywordflow">while</span> (*str) {</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        <a class="code hl_function" href="lcd___s_t_m32_8c.html#a2a6e088177e1e93fae263dbac56cc731">LCD_SendByte</a>((uint8_t)(*str++), 1);</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    }</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>}</div>
+</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="foldopen" id="foldopen00162" data-start="{" data-end="}">
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="group___l_c_d___s_t_m32.html#gab0bfa8e6a5ecf32e685152b5c6cf4868">  162</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gab0bfa8e6a5ecf32e685152b5c6cf4868">LCD_WriteChar</a>(<span class="keywordtype">char</span> data) {</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <a class="code hl_function" href="lcd___s_t_m32_8c.html#a2a6e088177e1e93fae263dbac56cc731">LCD_SendByte</a>((uint8_t)data, 1);</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>}</div>
+</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="foldopen" id="foldopen00166" data-start="{" data-end="}">
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="group___l_c_d___s_t_m32.html#ga8a771bc32e087f1a6cdfbbcfeaa1e7c9">  166</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga8a771bc32e087f1a6cdfbbcfeaa1e7c9">LCD_SetCursorMode</a>(<a class="code hl_enumeration" href="group___l_c_d___s_t_m32.html#ga79a87f821848bfd98ff4109be3a14c7a">lcd_cursor_mode_t</a> mode) {</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <a class="code hl_function" href="lcd___s_t_m32_8c.html#a2a6e088177e1e93fae263dbac56cc731">LCD_SendByte</a>((uint8_t)mode, 0);</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>}</div>
+</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="foldopen" id="foldopen00170" data-start="{" data-end="}">
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="group___l_c_d___s_t_m32.html#ga4b08bbb3051c9a5a839e3a2a2da8af92">  170</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga4b08bbb3051c9a5a839e3a2a2da8af92">LCD_Shift</a>(<a class="code hl_enumeration" href="group___l_c_d___s_t_m32.html#ga5c097ce1c009851949a0a49c19eef65d">lcd_shift_dir_t</a> direction) {</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <a class="code hl_function" href="lcd___s_t_m32_8c.html#a2a6e088177e1e93fae263dbac56cc731">LCD_SendByte</a>((uint8_t)direction, 0);</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>}</div>
+</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="foldopen" id="foldopen00174" data-start="{" data-end="}">
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="group___l_c_d___s_t_m32.html#ga156f7d6bf77a25f9d8a494fcdbb07f9d">  174</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga156f7d6bf77a25f9d8a494fcdbb07f9d">LCD_CreateCustomChar</a>(uint8_t location, <span class="keyword">const</span> uint8_t charmap[]) {</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keywordflow">if</span> (charmap == NULL) <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    location &amp;= 0x7; <span class="comment">// Asegurar rango válido de 0 a 7</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <a class="code hl_function" href="lcd___s_t_m32_8c.html#a2a6e088177e1e93fae263dbac56cc731">LCD_SendByte</a>((uint8_t)(<a class="code hl_define" href="lcd___s_t_m32_8c.html#aad59809458608f42eea90180b56b3e17">LCD_CMD_SET_CGRAM</a> | (location &lt;&lt; 3)), 0); <span class="comment">// Apuntar a la CGRAM</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; 8; i++) {</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        <a class="code hl_function" href="lcd___s_t_m32_8c.html#a2a6e088177e1e93fae263dbac56cc731">LCD_SendByte</a>(charmap[i], 1);</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    }</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="comment">// IMPORTANTE: tras escribir en CGRAM el contador de direcciones sigue apuntando a la CGRAM.</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    <span class="comment">// Hay que volver a la DDRAM, de lo contrario los siguientes caracteres no se verían en pantalla.</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <a class="code hl_function" href="lcd___s_t_m32_8c.html#a2a6e088177e1e93fae263dbac56cc731">LCD_SendByte</a>(<a class="code hl_define" href="lcd___s_t_m32_8c.html#ac019ce6dc1d44645a653de74e84bbe18">LCD_CMD_SET_DDRAM</a>, 0);</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>}</div>
+</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
+<div class="foldopen" id="foldopen00188" data-start="{" data-end="}">
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="group___l_c_d___s_t_m32.html#ga77e06d987fd18d03e67607fa91f7a4d9">  188</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga77e06d987fd18d03e67607fa91f7a4d9">LCD_PrintInt</a>(int32_t value) {</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    uint32_t magnitude;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="keywordflow">if</span> (value &lt; 0) {</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gab0bfa8e6a5ecf32e685152b5c6cf4868">LCD_WriteChar</a>(<span class="charliteral">&#39;-&#39;</span>);</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>        <span class="comment">// Negación en aritmética sin signo: correcta incluso para INT32_MIN</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>        magnitude = 0U - (uint32_t)value;</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        magnitude = (uint32_t)value;</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    }</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span> </div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <a class="code hl_function" href="lcd___s_t_m32_8c.html#a1e120a561468a57999cc8872a52c12ea">LCD_PrintUInt</a>(magnitude);</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>}</div>
+</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
+<div class="foldopen" id="foldopen00202" data-start="{" data-end="}">
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno"><a class="line" href="group___l_c_d___s_t_m32.html#gad7b60b38553178f6d82f30a04ec69b0a">  202</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gad7b60b38553178f6d82f30a04ec69b0a">LCD_PrintFloat</a>(<span class="keywordtype">float</span> value, uint8_t decimal_places) {</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <span class="comment">// Casos especiales: NaN (único valor distinto de sí mismo)</span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <span class="keywordflow">if</span> (value != value) {</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gae7816d8801b77a06a57bcdc1f01c3960">LCD_Print</a>(<span class="stringliteral">&quot;NaN&quot;</span>);</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    }</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="keywordflow">if</span> (decimal_places &gt; <a class="code hl_define" href="group___l_c_d___s_t_m32.html#ga2e3714f011e22ed8080868ce0ea72fde">LCD_FLOAT_MAX_DECIMALS</a>) {</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        decimal_places = <a class="code hl_define" href="group___l_c_d___s_t_m32.html#ga2e3714f011e22ed8080868ce0ea72fde">LCD_FLOAT_MAX_DECIMALS</a>;</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    }</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    uint8_t is_negative = (value &lt; 0.0f);</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    <span class="keywordflow">if</span> (is_negative) value = -value;</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="comment">// Fuera de rango (incluye +/- infinito): evita overflow en la conversión a entero</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="keywordflow">if</span> (value &gt; <a class="code hl_define" href="lcd___s_t_m32_8c.html#a131c2908ae9743e4b7037f92661b0d58">LCD_FLOAT_MAX_VALUE</a>) {</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>        <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gae7816d8801b77a06a57bcdc1f01c3960">LCD_Print</a>(is_negative ? <span class="stringliteral">&quot;-Ovf&quot;</span> : <span class="stringliteral">&quot;Ovf&quot;</span>);</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    }</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    <span class="comment">// Factor 10^decimal_places</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    uint32_t multiplier = 1;</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; decimal_places; i++) {</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>        multiplier *= 10;</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    }</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="comment">// Se redondea el valor COMPLETO escalado. Redondear solo la parte fraccionaria</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    <span class="comment">// fallaba con casos como 0.999 (2 decimales), donde el redondeo &quot;se llevaba&quot; un dígito.</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    uint64_t scaled    = (uint64_t)(value * (<span class="keywordtype">float</span>)multiplier + 0.5f);</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    uint32_t int_part  = (uint32_t)(scaled / multiplier);</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    uint32_t frac_part = (uint32_t)(scaled % multiplier);</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span> </div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <span class="comment">// Mostrar el signo solo si el resultado redondeado no es cero (evita &quot;-0.00&quot;)</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <span class="keywordflow">if</span> (is_negative &amp;&amp; scaled != 0) {</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>        <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gab0bfa8e6a5ecf32e685152b5c6cf4868">LCD_WriteChar</a>(<span class="charliteral">&#39;-&#39;</span>);</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    }</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span> </div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    <a class="code hl_function" href="lcd___s_t_m32_8c.html#a1e120a561468a57999cc8872a52c12ea">LCD_PrintUInt</a>(int_part);</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <span class="keywordflow">if</span> (decimal_places &gt; 0) {</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gab0bfa8e6a5ecf32e685152b5c6cf4868">LCD_WriteChar</a>(<span class="charliteral">&#39;.&#39;</span>);</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span> </div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        <span class="comment">// Imprimir cada decimal de mayor a menor peso; esto rellena con ceros a</span></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>        <span class="comment">// izquierda automáticamente (ej: frac=5, 2 decimales -&gt; &quot;05&quot;) sin búfer auxiliar.</span></div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>        <span class="keywordflow">for</span> (uint32_t div = multiplier / 10; div &gt; 0; div /= 10) {</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>            <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gab0bfa8e6a5ecf32e685152b5c6cf4868">LCD_WriteChar</a>((<span class="keywordtype">char</span>)(<span class="charliteral">&#39;0&#39;</span> + ((frac_part / div) % 10)));</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>        }</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    }</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>}</div>
+</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
+<div class="foldopen" id="foldopen00252" data-start="{" data-end="}">
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno"><a class="line" href="group___l_c_d___s_t_m32.html#ga24e7d586937f4d3e10832a4414afe161">  252</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga24e7d586937f4d3e10832a4414afe161">LCD_DrawProgressBar</a>(uint8_t row, uint8_t col, uint8_t width, uint8_t percentage) {</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    <span class="keywordflow">if</span> (width &lt; 2) <span class="keywordflow">return</span>; <span class="comment">// Se necesitan al menos los dos corchetes (evita underflow de uint8_t)</span></div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    <span class="keywordflow">if</span> (percentage &gt; 100) percentage = 100;</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span> </div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga976c96eaf59a5c2bcb52cbae19a45493">LCD_SetCursor</a>(row, col);</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span> </div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    uint8_t inner_width  = width - 2; <span class="comment">// Espacio útil interno descontando los corchetes [ y ]</span></div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    uint8_t filled_chars = (uint8_t)(((uint16_t)percentage * inner_width) / 100);</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span> </div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    <span class="comment">// Dibujar delimitador de apertura</span></div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gab0bfa8e6a5ecf32e685152b5c6cf4868">LCD_WriteChar</a>(<span class="charliteral">&#39;[&#39;</span>);</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    <span class="comment">// Sección activa de la barra con caracteres de avance &#39;&gt;&#39;</span></div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; filled_chars; i++) {</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>        <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gab0bfa8e6a5ecf32e685152b5c6cf4868">LCD_WriteChar</a>(<span class="charliteral">&#39;&gt;&#39;</span>);</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    }</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span> </div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    <span class="comment">// Resto del ancho con espacios en blanco</span></div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    <span class="keywordflow">for</span> (uint8_t i = filled_chars; i &lt; inner_width; i++) {</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>        <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gab0bfa8e6a5ecf32e685152b5c6cf4868">LCD_WriteChar</a>(<span class="charliteral">&#39; &#39;</span>);</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    }</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> </div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <span class="comment">// Dibujar delimitador de cierre</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gab0bfa8e6a5ecf32e685152b5c6cf4868">LCD_WriteChar</a>(<span class="charliteral">&#39;]&#39;</span>);</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>}</div>
+</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span> </div>
+<div class="foldopen" id="foldopen00278" data-start="{" data-end="}">
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno"><a class="line" href="group___l_c_d___s_t_m32.html#ga9fd59703a40f69454dd6c9b7dad58a66">  278</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga9fd59703a40f69454dd6c9b7dad58a66">LCD_Test</a>(<a class="code hl_enumeration" href="group___l_c_d___s_t_m32.html#gaf4b71961185e1fa00ee5962123a349ae">lcd_type_t</a> type) {</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gae60d0b62d7eb3fa31266c095d7b3c245">LCD_Clear</a>();</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    <span class="comment">// 1. Test básico de impresión por filas</span></div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga976c96eaf59a5c2bcb52cbae19a45493">LCD_SetCursor</a>(0, 0);</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gae7816d8801b77a06a57bcdc1f01c3960">LCD_Print</a>(<span class="stringliteral">&quot;--- LCD TEST ---&quot;</span>);</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span> </div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga976c96eaf59a5c2bcb52cbae19a45493">LCD_SetCursor</a>(1, 0);</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gae7816d8801b77a06a57bcdc1f01c3960">LCD_Print</a>(<span class="stringliteral">&quot;Driver OK&quot;</span>);</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span> </div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    <span class="keywordflow">if</span> (type == <a class="code hl_enumvalue" href="group___l_c_d___s_t_m32.html#ggaf4b71961185e1fa00ee5962123a349aeaf6f53abfb4787485a5f855349c16294b">LCD_20X4</a>) {</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>        <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga976c96eaf59a5c2bcb52cbae19a45493">LCD_SetCursor</a>(2, 0);</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>        <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gae7816d8801b77a06a57bcdc1f01c3960">LCD_Print</a>(<span class="stringliteral">&quot;Fila 3: 20x4 Activo&quot;</span>);</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>        <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga976c96eaf59a5c2bcb52cbae19a45493">LCD_SetCursor</a>(3, 0);</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>        <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gae7816d8801b77a06a57bcdc1f01c3960">LCD_Print</a>(<span class="stringliteral">&quot;Fila 4: Verificando&quot;</span>);</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    }</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span> </div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    HAL_Delay(3000); <span class="comment">// Pausa estática para lectura inicial</span></div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span> </div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    <span class="comment">// 2. Test de CGRAM (carácter personalizado en índice 0: un corazón)</span></div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    <span class="keyword">const</span> uint8_t custom_char[8] = {</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>        0x00, 0x0A, 0x1F, 0x1F, 0x0E, 0x04, 0x00, 0x00</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>    };</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga156f7d6bf77a25f9d8a494fcdbb07f9d">LCD_CreateCustomChar</a>(0, custom_char);</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span> </div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gae60d0b62d7eb3fa31266c095d7b3c245">LCD_Clear</a>();</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga976c96eaf59a5c2bcb52cbae19a45493">LCD_SetCursor</a>(0, 0);</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gae7816d8801b77a06a57bcdc1f01c3960">LCD_Print</a>(<span class="stringliteral">&quot;Custom Char: &quot;</span>);</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gab0bfa8e6a5ecf32e685152b5c6cf4868">LCD_WriteChar</a>(0); <span class="comment">// Renderiza el carácter guardado en la posición 0 de la CGRAM</span></div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span> </div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>    HAL_Delay(2000);</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span> </div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>    <span class="comment">// 3. Test de números: enteros, flotantes y casos de borde</span></div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gae60d0b62d7eb3fa31266c095d7b3c245">LCD_Clear</a>();</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga976c96eaf59a5c2bcb52cbae19a45493">LCD_SetCursor</a>(0, 0);</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga77e06d987fd18d03e67607fa91f7a4d9">LCD_PrintInt</a>(-12345);</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gae7816d8801b77a06a57bcdc1f01c3960">LCD_Print</a>(<span class="stringliteral">&quot;  &quot;</span>);</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gad7b60b38553178f6d82f30a04ec69b0a">LCD_PrintFloat</a>(3.14159f, 2);</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga976c96eaf59a5c2bcb52cbae19a45493">LCD_SetCursor</a>(1, 0);</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gad7b60b38553178f6d82f30a04ec69b0a">LCD_PrintFloat</a>(0.05f, 2);     <span class="comment">// Verifica relleno de ceros (&quot;0.05&quot;)</span></div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gae7816d8801b77a06a57bcdc1f01c3960">LCD_Print</a>(<span class="stringliteral">&quot; &quot;</span>);</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gad7b60b38553178f6d82f30a04ec69b0a">LCD_PrintFloat</a>(0.999f, 2);    <span class="comment">// Verifica acarreo del redondeo (&quot;1.00&quot;)</span></div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    HAL_Delay(3000);</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span> </div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    <span class="comment">// 4. Test de barra de progreso</span></div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gae60d0b62d7eb3fa31266c095d7b3c245">LCD_Clear</a>();</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    <span class="keywordflow">for</span> (uint8_t p = 0; p &lt;= 100; p += 10) {</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>        <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga24e7d586937f4d3e10832a4414afe161">LCD_DrawProgressBar</a>(0, 0, 16, p);</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>        <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga976c96eaf59a5c2bcb52cbae19a45493">LCD_SetCursor</a>(1, 0);</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>        <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga77e06d987fd18d03e67607fa91f7a4d9">LCD_PrintInt</a>(p);</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>        <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gae7816d8801b77a06a57bcdc1f01c3960">LCD_Print</a>(<span class="stringliteral">&quot;%  &quot;</span>);</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>        HAL_Delay(250);</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    }</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span> </div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    <span class="comment">// 5. Test de modos del cursor (parpadeo)</span></div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gae60d0b62d7eb3fa31266c095d7b3c245">LCD_Clear</a>();</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga976c96eaf59a5c2bcb52cbae19a45493">LCD_SetCursor</a>(1, 0);</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gae7816d8801b77a06a57bcdc1f01c3960">LCD_Print</a>(<span class="stringliteral">&quot;Cursor Blink ON&quot;</span>);</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga8a771bc32e087f1a6cdfbbcfeaa1e7c9">LCD_SetCursorMode</a>(<a class="code hl_enumvalue" href="group___l_c_d___s_t_m32.html#gga79a87f821848bfd98ff4109be3a14c7aa053feae0a079e28f562b40c910ee7cc1">LCD_CURSOR_BLINK</a>);</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>    HAL_Delay(2500);</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga8a771bc32e087f1a6cdfbbcfeaa1e7c9">LCD_SetCursorMode</a>(<a class="code hl_enumvalue" href="group___l_c_d___s_t_m32.html#gga79a87f821848bfd98ff4109be3a14c7aab730f8e6f6ef0c88fd684715fb543e02">LCD_CURSOR_OFF</a>); <span class="comment">// Desactivar el cursor al finalizar la prueba</span></div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span> </div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>    <span class="comment">// 6. Test de desplazamiento dinámico de pantalla (Shift)</span></div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gae60d0b62d7eb3fa31266c095d7b3c245">LCD_Clear</a>();</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga976c96eaf59a5c2bcb52cbae19a45493">LCD_SetCursor</a>(0, 0);</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gae7816d8801b77a06a57bcdc1f01c3960">LCD_Print</a>(<span class="stringliteral">&quot;Desplazando...&quot;</span>);</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>    HAL_Delay(1000);</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span> </div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 3; i++) {</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>        <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga4b08bbb3051c9a5a839e3a2a2da8af92">LCD_Shift</a>(<a class="code hl_enumvalue" href="group___l_c_d___s_t_m32.html#gga5c097ce1c009851949a0a49c19eef65da8643881a3c1fb4d1d840fd466c4dd349">LCD_SHIFT_RIGHT</a>);</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>        HAL_Delay(400);</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>    }</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 3; i++) {</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>        <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga4b08bbb3051c9a5a839e3a2a2da8af92">LCD_Shift</a>(<a class="code hl_enumvalue" href="group___l_c_d___s_t_m32.html#gga5c097ce1c009851949a0a49c19eef65da2e367741a4a07f3c59afa63f09a711d6">LCD_SHIFT_LEFT</a>);</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>        HAL_Delay(400);</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>    }</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span> </div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>    <span class="comment">// 7. Cierre de la secuencia de test (Clear también resetea el shift)</span></div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gae60d0b62d7eb3fa31266c095d7b3c245">LCD_Clear</a>();</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga976c96eaf59a5c2bcb52cbae19a45493">LCD_SetCursor</a>(0, 0);</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gae7816d8801b77a06a57bcdc1f01c3960">LCD_Print</a>(<span class="stringliteral">&quot;Test Finalizado!&quot;</span>);</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>}</div>
+</div>
+<div class="ttc" id="agroup___l_c_d___s_t_m32_html_ga156f7d6bf77a25f9d8a494fcdbb07f9d"><div class="ttname"><a href="group___l_c_d___s_t_m32.html#ga156f7d6bf77a25f9d8a494fcdbb07f9d">LCD_CreateCustomChar</a></div><div class="ttdeci">void LCD_CreateCustomChar(uint8_t location, const uint8_t charmap[])</div><div class="ttdoc">Crea o redefine un carácter personalizado en la memoria CGRAM del LCD.</div><div class="ttdef"><b>Definition</b> <a href="#l00174">lcd_STM32.c:174</a></div></div>
+<div class="ttc" id="agroup___l_c_d___s_t_m32_html_ga24e7d586937f4d3e10832a4414afe161"><div class="ttname"><a href="group___l_c_d___s_t_m32.html#ga24e7d586937f4d3e10832a4414afe161">LCD_DrawProgressBar</a></div><div class="ttdeci">void LCD_DrawProgressBar(uint8_t row, uint8_t col, uint8_t width, uint8_t percentage)</div><div class="ttdoc">Dibuja una barra de progreso con caracteres estándar en una posición dada.</div><div class="ttdef"><b>Definition</b> <a href="#l00252">lcd_STM32.c:252</a></div></div>
+<div class="ttc" id="agroup___l_c_d___s_t_m32_html_ga2e3714f011e22ed8080868ce0ea72fde"><div class="ttname"><a href="group___l_c_d___s_t_m32.html#ga2e3714f011e22ed8080868ce0ea72fde">LCD_FLOAT_MAX_DECIMALS</a></div><div class="ttdeci">#define LCD_FLOAT_MAX_DECIMALS</div><div class="ttdoc">Cantidad máxima de decimales soportados por LCD_PrintFloat().</div><div class="ttdef"><b>Definition</b> <a href="lcd___s_t_m32_8h_source.html#l00038">lcd_STM32.h:38</a></div></div>
+<div class="ttc" id="agroup___l_c_d___s_t_m32_html_ga36d493654e270263ce0ea9bc36b53b38"><div class="ttname"><a href="group___l_c_d___s_t_m32.html#ga36d493654e270263ce0ea9bc36b53b38">LCD_Init</a></div><div class="ttdeci">void LCD_Init(const LCD_Config_t *config)</div><div class="ttdoc">Inicializa el hardware y la interfaz de 4 bits del LCD.</div><div class="ttdef"><b>Definition</b> <a href="#l00104">lcd_STM32.c:104</a></div></div>
+<div class="ttc" id="agroup___l_c_d___s_t_m32_html_ga4b08bbb3051c9a5a839e3a2a2da8af92"><div class="ttname"><a href="group___l_c_d___s_t_m32.html#ga4b08bbb3051c9a5a839e3a2a2da8af92">LCD_Shift</a></div><div class="ttdeci">void LCD_Shift(lcd_shift_dir_t direction)</div><div class="ttdoc">Desplaza el contenido visible de la pantalla una posición hacia la izquierda o derecha.</div><div class="ttdef"><b>Definition</b> <a href="#l00170">lcd_STM32.c:170</a></div></div>
+<div class="ttc" id="agroup___l_c_d___s_t_m32_html_ga5c097ce1c009851949a0a49c19eef65d"><div class="ttname"><a href="group___l_c_d___s_t_m32.html#ga5c097ce1c009851949a0a49c19eef65d">lcd_shift_dir_t</a></div><div class="ttdeci">lcd_shift_dir_t</div><div class="ttdoc">Enumeración para las direcciones de desplazamiento de la pantalla.</div><div class="ttdef"><b>Definition</b> <a href="lcd___s_t_m32_8h_source.html#l00061">lcd_STM32.h:61</a></div></div>
+<div class="ttc" id="agroup___l_c_d___s_t_m32_html_ga77e06d987fd18d03e67607fa91f7a4d9"><div class="ttname"><a href="group___l_c_d___s_t_m32.html#ga77e06d987fd18d03e67607fa91f7a4d9">LCD_PrintInt</a></div><div class="ttdeci">void LCD_PrintInt(int32_t value)</div><div class="ttdoc">Imprime un número entero con signo en la posición actual del cursor.</div><div class="ttdef"><b>Definition</b> <a href="#l00188">lcd_STM32.c:188</a></div></div>
+<div class="ttc" id="agroup___l_c_d___s_t_m32_html_ga79a87f821848bfd98ff4109be3a14c7a"><div class="ttname"><a href="group___l_c_d___s_t_m32.html#ga79a87f821848bfd98ff4109be3a14c7a">lcd_cursor_mode_t</a></div><div class="ttdeci">lcd_cursor_mode_t</div><div class="ttdoc">Enumeración para los modos de visualización del cursor.</div><div class="ttdef"><b>Definition</b> <a href="lcd___s_t_m32_8h_source.html#l00052">lcd_STM32.h:52</a></div></div>
+<div class="ttc" id="agroup___l_c_d___s_t_m32_html_ga8a771bc32e087f1a6cdfbbcfeaa1e7c9"><div class="ttname"><a href="group___l_c_d___s_t_m32.html#ga8a771bc32e087f1a6cdfbbcfeaa1e7c9">LCD_SetCursorMode</a></div><div class="ttdeci">void LCD_SetCursorMode(lcd_cursor_mode_t mode)</div><div class="ttdoc">Configura el comportamiento visual del cursor en pantalla.</div><div class="ttdef"><b>Definition</b> <a href="#l00166">lcd_STM32.c:166</a></div></div>
+<div class="ttc" id="agroup___l_c_d___s_t_m32_html_ga976c96eaf59a5c2bcb52cbae19a45493"><div class="ttname"><a href="group___l_c_d___s_t_m32.html#ga976c96eaf59a5c2bcb52cbae19a45493">LCD_SetCursor</a></div><div class="ttdeci">void LCD_SetCursor(uint8_t row, uint8_t col)</div><div class="ttdoc">Posiciona el cursor en una fila y columna específica.</div><div class="ttdef"><b>Definition</b> <a href="#l00139">lcd_STM32.c:139</a></div></div>
+<div class="ttc" id="agroup___l_c_d___s_t_m32_html_ga9fd59703a40f69454dd6c9b7dad58a66"><div class="ttname"><a href="group___l_c_d___s_t_m32.html#ga9fd59703a40f69454dd6c9b7dad58a66">LCD_Test</a></div><div class="ttdeci">void LCD_Test(lcd_type_t type)</div><div class="ttdoc">Ejecuta una rutina de testeo y demostración de las funcionalidades del LCD.</div><div class="ttdef"><b>Definition</b> <a href="#l00278">lcd_STM32.c:278</a></div></div>
+<div class="ttc" id="agroup___l_c_d___s_t_m32_html_gab0bfa8e6a5ecf32e685152b5c6cf4868"><div class="ttname"><a href="group___l_c_d___s_t_m32.html#gab0bfa8e6a5ecf32e685152b5c6cf4868">LCD_WriteChar</a></div><div class="ttdeci">void LCD_WriteChar(char data)</div><div class="ttdoc">Escribe un único carácter en la posición actual del cursor.</div><div class="ttdef"><b>Definition</b> <a href="#l00162">lcd_STM32.c:162</a></div></div>
+<div class="ttc" id="agroup___l_c_d___s_t_m32_html_gad7b60b38553178f6d82f30a04ec69b0a"><div class="ttname"><a href="group___l_c_d___s_t_m32.html#gad7b60b38553178f6d82f30a04ec69b0a">LCD_PrintFloat</a></div><div class="ttdeci">void LCD_PrintFloat(float value, uint8_t decimal_places)</div><div class="ttdoc">Imprime un número flotante con cantidad fija de decimales.</div><div class="ttdef"><b>Definition</b> <a href="#l00202">lcd_STM32.c:202</a></div></div>
+<div class="ttc" id="agroup___l_c_d___s_t_m32_html_gae60d0b62d7eb3fa31266c095d7b3c245"><div class="ttname"><a href="group___l_c_d___s_t_m32.html#gae60d0b62d7eb3fa31266c095d7b3c245">LCD_Clear</a></div><div class="ttdeci">void LCD_Clear(void)</div><div class="ttdoc">Borra todo el contenido del display y retorna el cursor a la posición (0,0).</div><div class="ttdef"><b>Definition</b> <a href="#l00134">lcd_STM32.c:134</a></div></div>
+<div class="ttc" id="agroup___l_c_d___s_t_m32_html_gae7816d8801b77a06a57bcdc1f01c3960"><div class="ttname"><a href="group___l_c_d___s_t_m32.html#gae7816d8801b77a06a57bcdc1f01c3960">LCD_Print</a></div><div class="ttdeci">void LCD_Print(const char *str)</div><div class="ttdoc">Imprime una cadena de caracteres en la posición actual del cursor.</div><div class="ttdef"><b>Definition</b> <a href="#l00154">lcd_STM32.c:154</a></div></div>
+<div class="ttc" id="agroup___l_c_d___s_t_m32_html_gaf4b71961185e1fa00ee5962123a349ae"><div class="ttname"><a href="group___l_c_d___s_t_m32.html#gaf4b71961185e1fa00ee5962123a349ae">lcd_type_t</a></div><div class="ttdeci">lcd_type_t</div><div class="ttdoc">Enumeración para definir la geometría del display LCD.</div><div class="ttdef"><b>Definition</b> <a href="lcd___s_t_m32_8h_source.html#l00043">lcd_STM32.h:43</a></div></div>
+<div class="ttc" id="agroup___l_c_d___s_t_m32_html_gga5c097ce1c009851949a0a49c19eef65da2e367741a4a07f3c59afa63f09a711d6"><div class="ttname"><a href="group___l_c_d___s_t_m32.html#gga5c097ce1c009851949a0a49c19eef65da2e367741a4a07f3c59afa63f09a711d6">LCD_SHIFT_LEFT</a></div><div class="ttdeci">@ LCD_SHIFT_LEFT</div><div class="ttdoc">Desplazar contenido completo hacia la izquierda.</div><div class="ttdef"><b>Definition</b> <a href="lcd___s_t_m32_8h_source.html#l00062">lcd_STM32.h:62</a></div></div>
+<div class="ttc" id="agroup___l_c_d___s_t_m32_html_gga5c097ce1c009851949a0a49c19eef65da8643881a3c1fb4d1d840fd466c4dd349"><div class="ttname"><a href="group___l_c_d___s_t_m32.html#gga5c097ce1c009851949a0a49c19eef65da8643881a3c1fb4d1d840fd466c4dd349">LCD_SHIFT_RIGHT</a></div><div class="ttdeci">@ LCD_SHIFT_RIGHT</div><div class="ttdoc">Desplazar contenido completo hacia la derecha.</div><div class="ttdef"><b>Definition</b> <a href="lcd___s_t_m32_8h_source.html#l00063">lcd_STM32.h:63</a></div></div>
+<div class="ttc" id="agroup___l_c_d___s_t_m32_html_gga79a87f821848bfd98ff4109be3a14c7aa053feae0a079e28f562b40c910ee7cc1"><div class="ttname"><a href="group___l_c_d___s_t_m32.html#gga79a87f821848bfd98ff4109be3a14c7aa053feae0a079e28f562b40c910ee7cc1">LCD_CURSOR_BLINK</a></div><div class="ttdeci">@ LCD_CURSOR_BLINK</div><div class="ttdoc">Cursor parpadeante (bloque)</div><div class="ttdef"><b>Definition</b> <a href="lcd___s_t_m32_8h_source.html#l00055">lcd_STM32.h:55</a></div></div>
+<div class="ttc" id="agroup___l_c_d___s_t_m32_html_gga79a87f821848bfd98ff4109be3a14c7aab730f8e6f6ef0c88fd684715fb543e02"><div class="ttname"><a href="group___l_c_d___s_t_m32.html#gga79a87f821848bfd98ff4109be3a14c7aab730f8e6f6ef0c88fd684715fb543e02">LCD_CURSOR_OFF</a></div><div class="ttdeci">@ LCD_CURSOR_OFF</div><div class="ttdoc">Cursor oculto, display encendido.</div><div class="ttdef"><b>Definition</b> <a href="lcd___s_t_m32_8h_source.html#l00053">lcd_STM32.h:53</a></div></div>
+<div class="ttc" id="agroup___l_c_d___s_t_m32_html_ggaf4b71961185e1fa00ee5962123a349aeaf6f53abfb4787485a5f855349c16294b"><div class="ttname"><a href="group___l_c_d___s_t_m32.html#ggaf4b71961185e1fa00ee5962123a349aeaf6f53abfb4787485a5f855349c16294b">LCD_20X4</a></div><div class="ttdeci">@ LCD_20X4</div><div class="ttdoc">Display de 20 columnas por 4 filas.</div><div class="ttdef"><b>Definition</b> <a href="lcd___s_t_m32_8h_source.html#l00045">lcd_STM32.h:45</a></div></div>
+<div class="ttc" id="alcd___s_t_m32_8c_html_a02a11471566ae2b8d86e950342f98c75"><div class="ttname"><a href="lcd___s_t_m32_8c.html#a02a11471566ae2b8d86e950342f98c75">LCD_SendNibble</a></div><div class="ttdeci">static void LCD_SendNibble(uint8_t nibble)</div><div class="ttdoc">Coloca un nibble (4 bits) en las líneas D4-D7 y lo envía con un pulso de Enable.</div><div class="ttdef"><b>Definition</b> <a href="#l00052">lcd_STM32.c:52</a></div></div>
+<div class="ttc" id="alcd___s_t_m32_8c_html_a0d333ac389595d1f677ab6e1e0a58e74"><div class="ttname"><a href="lcd___s_t_m32_8c.html#a0d333ac389595d1f677ab6e1e0a58e74">LCD_CMD_DISPLAY_OFF</a></div><div class="ttdeci">#define LCD_CMD_DISPLAY_OFF</div><div class="ttdef"><b>Definition</b> <a href="#l00021">lcd_STM32.c:21</a></div></div>
+<div class="ttc" id="alcd___s_t_m32_8c_html_a131c2908ae9743e4b7037f92661b0d58"><div class="ttname"><a href="lcd___s_t_m32_8c.html#a131c2908ae9743e4b7037f92661b0d58">LCD_FLOAT_MAX_VALUE</a></div><div class="ttdeci">#define LCD_FLOAT_MAX_VALUE</div><div class="ttdoc">Máximo valor absoluto representable por LCD_PrintFloat (evita overflow).</div><div class="ttdef"><b>Definition</b> <a href="#l00027">lcd_STM32.c:27</a></div></div>
+<div class="ttc" id="alcd___s_t_m32_8c_html_a1545150065fabc082fe1899018138cb5"><div class="ttname"><a href="lcd___s_t_m32_8c.html#a1545150065fabc082fe1899018138cb5">LCD_CMD_ENTRY_MODE</a></div><div class="ttdeci">#define LCD_CMD_ENTRY_MODE</div><div class="ttdef"><b>Definition</b> <a href="#l00020">lcd_STM32.c:20</a></div></div>
+<div class="ttc" id="alcd___s_t_m32_8c_html_a1e120a561468a57999cc8872a52c12ea"><div class="ttname"><a href="lcd___s_t_m32_8c.html#a1e120a561468a57999cc8872a52c12ea">LCD_PrintUInt</a></div><div class="ttdeci">static void LCD_PrintUInt(uint32_t value)</div><div class="ttdoc">Imprime un entero sin signo de 32 bits en decimal.</div><div class="ttdef"><b>Definition</b> <a href="#l00079">lcd_STM32.c:79</a></div></div>
+<div class="ttc" id="alcd___s_t_m32_8c_html_a297b2c9447670639c97dd56f22205a58"><div class="ttname"><a href="lcd___s_t_m32_8c.html#a297b2c9447670639c97dd56f22205a58">LCD_CMD_CLEAR</a></div><div class="ttdeci">#define LCD_CMD_CLEAR</div><div class="ttdef"><b>Definition</b> <a href="#l00019">lcd_STM32.c:19</a></div></div>
+<div class="ttc" id="alcd___s_t_m32_8c_html_a2a6e088177e1e93fae263dbac56cc731"><div class="ttname"><a href="lcd___s_t_m32_8c.html#a2a6e088177e1e93fae263dbac56cc731">LCD_SendByte</a></div><div class="ttdeci">static void LCD_SendByte(uint8_t byte, uint8_t is_data)</div><div class="ttdoc">Envía un byte completo (comando o dato) al LCD en dos nibbles.</div><div class="ttdef"><b>Definition</b> <a href="#l00066">lcd_STM32.c:66</a></div></div>
+<div class="ttc" id="alcd___s_t_m32_8c_html_a5cdc0f50b0d93720dda1511e54ab30a7"><div class="ttname"><a href="lcd___s_t_m32_8c.html#a5cdc0f50b0d93720dda1511e54ab30a7">LCD_CMD_FUNCTION_SET</a></div><div class="ttdeci">#define LCD_CMD_FUNCTION_SET</div><div class="ttdef"><b>Definition</b> <a href="#l00022">lcd_STM32.c:22</a></div></div>
+<div class="ttc" id="alcd___s_t_m32_8c_html_aa90b4cda0e82f63c3de1617cdf996ab4"><div class="ttname"><a href="lcd___s_t_m32_8c.html#aa90b4cda0e82f63c3de1617cdf996ab4">LCD_PulseEnable</a></div><div class="ttdeci">static void LCD_PulseEnable(void)</div><div class="ttdoc">Genera un pulso en la línea Enable para que el LCD capture el nibble presente en D4-D7.</div><div class="ttdef"><b>Definition</b> <a href="#l00039">lcd_STM32.c:39</a></div></div>
+<div class="ttc" id="alcd___s_t_m32_8c_html_aad59809458608f42eea90180b56b3e17"><div class="ttname"><a href="lcd___s_t_m32_8c.html#aad59809458608f42eea90180b56b3e17">LCD_CMD_SET_CGRAM</a></div><div class="ttdeci">#define LCD_CMD_SET_CGRAM</div><div class="ttdef"><b>Definition</b> <a href="#l00023">lcd_STM32.c:23</a></div></div>
+<div class="ttc" id="alcd___s_t_m32_8c_html_ac019ce6dc1d44645a653de74e84bbe18"><div class="ttname"><a href="lcd___s_t_m32_8c.html#ac019ce6dc1d44645a653de74e84bbe18">LCD_CMD_SET_DDRAM</a></div><div class="ttdeci">#define LCD_CMD_SET_DDRAM</div><div class="ttdef"><b>Definition</b> <a href="#l00024">lcd_STM32.c:24</a></div></div>
+<div class="ttc" id="alcd___s_t_m32_8h_html"><div class="ttname"><a href="lcd___s_t_m32_8h.html">lcd_STM32.h</a></div><div class="ttdoc">Driver de Capa 2 para pantallas LCD Hitachi HD44780 en modo 4 bits (STM32 HAL).</div></div>
+<div class="ttc" id="astruct_l_c_d___config__t_html"><div class="ttname"><a href="struct_l_c_d___config__t.html">LCD_Config_t</a></div><div class="ttdoc">Estructura de configuración y abstracción de hardware del LCD para STM32.</div><div class="ttdef"><b>Definition</b> <a href="lcd___s_t_m32_8h_source.html#l00084">lcd_STM32.h:84</a></div></div>
+<div class="ttc" id="autils_8h_html_a6e0ad966a3cc9a6100d4c41f5f653a3d"><div class="ttname"><a href="utils_8h.html#a6e0ad966a3cc9a6100d4c41f5f653a3d">Utils_DelayUs</a></div><div class="ttdeci">void Utils_DelayUs(uint32_t us)</div><div class="ttdoc">Genera un retardo bloqueante en microsegundos.</div><div class="ttdef"><b>Definition</b> <a href="utils_8c_source.html#l00055">utils.c:55</a></div></div>
+<div class="ttc" id="autils_8h_html_ad77e44a104dcf055df7f34bd7efa65ef"><div class="ttname"><a href="utils_8h.html#ad77e44a104dcf055df7f34bd7efa65ef">Utils_DelayUs_Init</a></div><div class="ttdeci">void Utils_DelayUs_Init(void)</div><div class="ttdoc">Inicializa el temporizador de retardos en microsegundos.</div><div class="ttdef"><b>Definition</b> <a href="utils_8c_source.html#l00030">utils.c:30</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

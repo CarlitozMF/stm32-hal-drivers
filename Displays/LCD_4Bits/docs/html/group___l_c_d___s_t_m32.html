@@ -1,0 +1,567 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Driver LCD STM32 HD44780: Driver LCD HD44780 (STM32)</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Driver LCD STM32 HD44780<span id="projectnumber">&#160;2.1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Buscar',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Estructuras de datos</a> &#124;
+<a href="#define-members">defines</a> &#124;
+<a href="#enum-members">Enumeraciones</a> &#124;
+<a href="#func-members">Funciones</a>  </div>
+  <div class="headertitle"><div class="title">Driver LCD HD44780 (STM32) </div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Funciones, tipos y configuración del driver LCD.  
+<a href="#details">Más...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Estructuras de datos</h2></td></tr>
+<tr class="memitem:LCD_5FConfig_5Ft" id="r_LCD_5FConfig_5Ft"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_l_c_d___config__t.html">LCD_Config_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estructura de configuración y abstracción de hardware del LCD para STM32.  <a href="struct_l_c_d___config__t.html#details">Más...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+defines</h2></td></tr>
+<tr class="memitem:ga2e3714f011e22ed8080868ce0ea72fde" id="r_ga2e3714f011e22ed8080868ce0ea72fde"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga2e3714f011e22ed8080868ce0ea72fde">LCD_FLOAT_MAX_DECIMALS</a>&#160;&#160;&#160;9U</td></tr>
+<tr class="memdesc:ga2e3714f011e22ed8080868ce0ea72fde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cantidad máxima de decimales soportados por <a class="el" href="#gad7b60b38553178f6d82f30a04ec69b0a" title="Imprime un número flotante con cantidad fija de decimales.">LCD_PrintFloat()</a>.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumeraciones</h2></td></tr>
+<tr class="memitem:gaf4b71961185e1fa00ee5962123a349ae" id="r_gaf4b71961185e1fa00ee5962123a349ae"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaf4b71961185e1fa00ee5962123a349ae">lcd_type_t</a> { <a class="el" href="#ggaf4b71961185e1fa00ee5962123a349aea6c6af96993a3bda95b337da79bb9f5a6">LCD_16X2</a>
+, <a class="el" href="#ggaf4b71961185e1fa00ee5962123a349aeaf6f53abfb4787485a5f855349c16294b">LCD_20X4</a>
+ }</td></tr>
+<tr class="memdesc:gaf4b71961185e1fa00ee5962123a349ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumeración para definir la geometría del display LCD.  <a href="#gaf4b71961185e1fa00ee5962123a349ae">Más...</a><br /></td></tr>
+<tr class="memitem:ga79a87f821848bfd98ff4109be3a14c7a" id="r_ga79a87f821848bfd98ff4109be3a14c7a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga79a87f821848bfd98ff4109be3a14c7a">lcd_cursor_mode_t</a> { <a class="el" href="#gga79a87f821848bfd98ff4109be3a14c7aab730f8e6f6ef0c88fd684715fb543e02">LCD_CURSOR_OFF</a> = 0x0C
+, <a class="el" href="#gga79a87f821848bfd98ff4109be3a14c7aaccc9e32fc9cb0580041f1a5a1810ba86">LCD_CURSOR_ON</a> = 0x0E
+, <a class="el" href="#gga79a87f821848bfd98ff4109be3a14c7aa053feae0a079e28f562b40c910ee7cc1">LCD_CURSOR_BLINK</a> = 0x0F
+ }</td></tr>
+<tr class="memdesc:ga79a87f821848bfd98ff4109be3a14c7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumeración para los modos de visualización del cursor.  <a href="#ga79a87f821848bfd98ff4109be3a14c7a">Más...</a><br /></td></tr>
+<tr class="memitem:ga5c097ce1c009851949a0a49c19eef65d" id="r_ga5c097ce1c009851949a0a49c19eef65d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga5c097ce1c009851949a0a49c19eef65d">lcd_shift_dir_t</a> { <a class="el" href="#gga5c097ce1c009851949a0a49c19eef65da2e367741a4a07f3c59afa63f09a711d6">LCD_SHIFT_LEFT</a> = 0x18
+, <a class="el" href="#gga5c097ce1c009851949a0a49c19eef65da8643881a3c1fb4d1d840fd466c4dd349">LCD_SHIFT_RIGHT</a> = 0x1C
+ }</td></tr>
+<tr class="memdesc:ga5c097ce1c009851949a0a49c19eef65d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumeración para las direcciones de desplazamiento de la pantalla.  <a href="#ga5c097ce1c009851949a0a49c19eef65d">Más...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Funciones</h2></td></tr>
+<tr class="memitem:ga36d493654e270263ce0ea9bc36b53b38" id="r_ga36d493654e270263ce0ea9bc36b53b38"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga36d493654e270263ce0ea9bc36b53b38">LCD_Init</a> (const <a class="el" href="struct_l_c_d___config__t.html">LCD_Config_t</a> *config)</td></tr>
+<tr class="memdesc:ga36d493654e270263ce0ea9bc36b53b38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa el hardware y la interfaz de 4 bits del LCD.  <br /></td></tr>
+<tr class="memitem:gae60d0b62d7eb3fa31266c095d7b3c245" id="r_gae60d0b62d7eb3fa31266c095d7b3c245"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gae60d0b62d7eb3fa31266c095d7b3c245">LCD_Clear</a> (void)</td></tr>
+<tr class="memdesc:gae60d0b62d7eb3fa31266c095d7b3c245"><td class="mdescLeft">&#160;</td><td class="mdescRight">Borra todo el contenido del display y retorna el cursor a la posición (0,0).  <br /></td></tr>
+<tr class="memitem:ga976c96eaf59a5c2bcb52cbae19a45493" id="r_ga976c96eaf59a5c2bcb52cbae19a45493"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga976c96eaf59a5c2bcb52cbae19a45493">LCD_SetCursor</a> (uint8_t row, uint8_t col)</td></tr>
+<tr class="memdesc:ga976c96eaf59a5c2bcb52cbae19a45493"><td class="mdescLeft">&#160;</td><td class="mdescRight">Posiciona el cursor en una fila y columna específica.  <br /></td></tr>
+<tr class="memitem:gae7816d8801b77a06a57bcdc1f01c3960" id="r_gae7816d8801b77a06a57bcdc1f01c3960"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gae7816d8801b77a06a57bcdc1f01c3960">LCD_Print</a> (const char *str)</td></tr>
+<tr class="memdesc:gae7816d8801b77a06a57bcdc1f01c3960"><td class="mdescLeft">&#160;</td><td class="mdescRight">Imprime una cadena de caracteres en la posición actual del cursor.  <br /></td></tr>
+<tr class="memitem:gab0bfa8e6a5ecf32e685152b5c6cf4868" id="r_gab0bfa8e6a5ecf32e685152b5c6cf4868"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gab0bfa8e6a5ecf32e685152b5c6cf4868">LCD_WriteChar</a> (char data)</td></tr>
+<tr class="memdesc:gab0bfa8e6a5ecf32e685152b5c6cf4868"><td class="mdescLeft">&#160;</td><td class="mdescRight">Escribe un único carácter en la posición actual del cursor.  <br /></td></tr>
+<tr class="memitem:ga8a771bc32e087f1a6cdfbbcfeaa1e7c9" id="r_ga8a771bc32e087f1a6cdfbbcfeaa1e7c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga8a771bc32e087f1a6cdfbbcfeaa1e7c9">LCD_SetCursorMode</a> (<a class="el" href="#ga79a87f821848bfd98ff4109be3a14c7a">lcd_cursor_mode_t</a> mode)</td></tr>
+<tr class="memdesc:ga8a771bc32e087f1a6cdfbbcfeaa1e7c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configura el comportamiento visual del cursor en pantalla.  <br /></td></tr>
+<tr class="memitem:ga4b08bbb3051c9a5a839e3a2a2da8af92" id="r_ga4b08bbb3051c9a5a839e3a2a2da8af92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga4b08bbb3051c9a5a839e3a2a2da8af92">LCD_Shift</a> (<a class="el" href="#ga5c097ce1c009851949a0a49c19eef65d">lcd_shift_dir_t</a> direction)</td></tr>
+<tr class="memdesc:ga4b08bbb3051c9a5a839e3a2a2da8af92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Desplaza el contenido visible de la pantalla una posición hacia la izquierda o derecha.  <br /></td></tr>
+<tr class="memitem:ga156f7d6bf77a25f9d8a494fcdbb07f9d" id="r_ga156f7d6bf77a25f9d8a494fcdbb07f9d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga156f7d6bf77a25f9d8a494fcdbb07f9d">LCD_CreateCustomChar</a> (uint8_t location, const uint8_t charmap[])</td></tr>
+<tr class="memdesc:ga156f7d6bf77a25f9d8a494fcdbb07f9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea o redefine un carácter personalizado en la memoria CGRAM del LCD.  <br /></td></tr>
+<tr class="memitem:ga77e06d987fd18d03e67607fa91f7a4d9" id="r_ga77e06d987fd18d03e67607fa91f7a4d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga77e06d987fd18d03e67607fa91f7a4d9">LCD_PrintInt</a> (int32_t value)</td></tr>
+<tr class="memdesc:ga77e06d987fd18d03e67607fa91f7a4d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Imprime un número entero con signo en la posición actual del cursor.  <br /></td></tr>
+<tr class="memitem:gad7b60b38553178f6d82f30a04ec69b0a" id="r_gad7b60b38553178f6d82f30a04ec69b0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gad7b60b38553178f6d82f30a04ec69b0a">LCD_PrintFloat</a> (float value, uint8_t decimal_places)</td></tr>
+<tr class="memdesc:gad7b60b38553178f6d82f30a04ec69b0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Imprime un número flotante con cantidad fija de decimales.  <br /></td></tr>
+<tr class="memitem:ga24e7d586937f4d3e10832a4414afe161" id="r_ga24e7d586937f4d3e10832a4414afe161"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga24e7d586937f4d3e10832a4414afe161">LCD_DrawProgressBar</a> (uint8_t row, uint8_t col, uint8_t width, uint8_t percentage)</td></tr>
+<tr class="memdesc:ga24e7d586937f4d3e10832a4414afe161"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dibuja una barra de progreso con caracteres estándar en una posición dada.  <br /></td></tr>
+<tr class="memitem:ga9fd59703a40f69454dd6c9b7dad58a66" id="r_ga9fd59703a40f69454dd6c9b7dad58a66"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga9fd59703a40f69454dd6c9b7dad58a66">LCD_Test</a> (<a class="el" href="#gaf4b71961185e1fa00ee5962123a349ae">lcd_type_t</a> type)</td></tr>
+<tr class="memdesc:ga9fd59703a40f69454dd6c9b7dad58a66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ejecuta una rutina de testeo y demostración de las funcionalidades del LCD.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descripción detallada</h2>
+<a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Documentación de «define»</h2>
+<a id="ga2e3714f011e22ed8080868ce0ea72fde" name="ga2e3714f011e22ed8080868ce0ea72fde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2e3714f011e22ed8080868ce0ea72fde">&#9670;&#160;</a></span>LCD_FLOAT_MAX_DECIMALS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LCD_FLOAT_MAX_DECIMALS&#160;&#160;&#160;9U</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8h_source.html#l00038">38</a> del archivo <a class="el" href="lcd___s_t_m32_8h_source.html">lcd_STM32.h</a>.</p>
+
+</div>
+</div>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Documentación de enumeraciones</h2>
+<a id="ga79a87f821848bfd98ff4109be3a14c7a" name="ga79a87f821848bfd98ff4109be3a14c7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga79a87f821848bfd98ff4109be3a14c7a">&#9670;&#160;</a></span>lcd_cursor_mode_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#ga79a87f821848bfd98ff4109be3a14c7a">lcd_cursor_mode_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section note"><dt>Nota</dt><dd>Todos los modos mantienen el display encendido. </dd></dl>
+<table class="fieldtable">
+<tr><th colspan="2">Valores de enumeraciones</th></tr><tr><td class="fieldname"><a id="gga79a87f821848bfd98ff4109be3a14c7aab730f8e6f6ef0c88fd684715fb543e02" name="gga79a87f821848bfd98ff4109be3a14c7aab730f8e6f6ef0c88fd684715fb543e02"></a>LCD_CURSOR_OFF&#160;</td><td class="fielddoc"><p>Cursor oculto, display encendido. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga79a87f821848bfd98ff4109be3a14c7aaccc9e32fc9cb0580041f1a5a1810ba86" name="gga79a87f821848bfd98ff4109be3a14c7aaccc9e32fc9cb0580041f1a5a1810ba86"></a>LCD_CURSOR_ON&#160;</td><td class="fielddoc"><p>Cursor fijo visible (subrayado) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga79a87f821848bfd98ff4109be3a14c7aa053feae0a079e28f562b40c910ee7cc1" name="gga79a87f821848bfd98ff4109be3a14c7aa053feae0a079e28f562b40c910ee7cc1"></a>LCD_CURSOR_BLINK&#160;</td><td class="fielddoc"><p>Cursor parpadeante (bloque) </p>
+</td></tr>
+</table>
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8h_source.html#l00052">52</a> del archivo <a class="el" href="lcd___s_t_m32_8h_source.html">lcd_STM32.h</a>.</p>
+
+</div>
+</div>
+<a id="ga5c097ce1c009851949a0a49c19eef65d" name="ga5c097ce1c009851949a0a49c19eef65d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5c097ce1c009851949a0a49c19eef65d">&#9670;&#160;</a></span>lcd_shift_dir_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#ga5c097ce1c009851949a0a49c19eef65d">lcd_shift_dir_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Valores de enumeraciones</th></tr><tr><td class="fieldname"><a id="gga5c097ce1c009851949a0a49c19eef65da2e367741a4a07f3c59afa63f09a711d6" name="gga5c097ce1c009851949a0a49c19eef65da2e367741a4a07f3c59afa63f09a711d6"></a>LCD_SHIFT_LEFT&#160;</td><td class="fielddoc"><p>Desplazar contenido completo hacia la izquierda. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga5c097ce1c009851949a0a49c19eef65da8643881a3c1fb4d1d840fd466c4dd349" name="gga5c097ce1c009851949a0a49c19eef65da8643881a3c1fb4d1d840fd466c4dd349"></a>LCD_SHIFT_RIGHT&#160;</td><td class="fielddoc"><p>Desplazar contenido completo hacia la derecha. </p>
+</td></tr>
+</table>
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8h_source.html#l00061">61</a> del archivo <a class="el" href="lcd___s_t_m32_8h_source.html">lcd_STM32.h</a>.</p>
+
+</div>
+</div>
+<a id="gaf4b71961185e1fa00ee5962123a349ae" name="gaf4b71961185e1fa00ee5962123a349ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf4b71961185e1fa00ee5962123a349ae">&#9670;&#160;</a></span>lcd_type_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#gaf4b71961185e1fa00ee5962123a349ae">lcd_type_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Valores de enumeraciones</th></tr><tr><td class="fieldname"><a id="ggaf4b71961185e1fa00ee5962123a349aea6c6af96993a3bda95b337da79bb9f5a6" name="ggaf4b71961185e1fa00ee5962123a349aea6c6af96993a3bda95b337da79bb9f5a6"></a>LCD_16X2&#160;</td><td class="fielddoc"><p>Display de 16 columnas por 2 filas. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaf4b71961185e1fa00ee5962123a349aeaf6f53abfb4787485a5f855349c16294b" name="ggaf4b71961185e1fa00ee5962123a349aeaf6f53abfb4787485a5f855349c16294b"></a>LCD_20X4&#160;</td><td class="fielddoc"><p>Display de 20 columnas por 4 filas. </p>
+</td></tr>
+</table>
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8h_source.html#l00043">43</a> del archivo <a class="el" href="lcd___s_t_m32_8h_source.html">lcd_STM32.h</a>.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentación de funciones</h2>
+<a id="gae60d0b62d7eb3fa31266c095d7b3c245" name="gae60d0b62d7eb3fa31266c095d7b3c245"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae60d0b62d7eb3fa31266c095d7b3c245">&#9670;&#160;</a></span>LCD_Clear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LCD_Clear </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section note"><dt>Nota</dt><dd>Bloqueante: espera ~2 ms (tiempo de ejecución del comando). </dd></dl>
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8c_source.html#l00134">134</a> del archivo <a class="el" href="lcd___s_t_m32_8c_source.html">lcd_STM32.c</a>.</p>
+
+</div>
+</div>
+<a id="ga156f7d6bf77a25f9d8a494fcdbb07f9d" name="ga156f7d6bf77a25f9d8a494fcdbb07f9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga156f7d6bf77a25f9d8a494fcdbb07f9d">&#9670;&#160;</a></span>LCD_CreateCustomChar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LCD_CreateCustomChar </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>location</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t</td>          <td class="paramname"><span class="paramname"><em>charmap</em></span>[]&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section warning"><dt>Atención</dt><dd>Al finalizar, el cursor queda en la posición (0,0) de la DDRAM; llamar a <a class="el" href="#ga976c96eaf59a5c2bcb52cbae19a45493" title="Posiciona el cursor en una fila y columna específica.">LCD_SetCursor()</a> antes de continuar escribiendo. </dd></dl>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">location</td><td>Índice de la CGRAM a modificar (0 a 7). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">charmap</td><td>Arreglo de 8 bytes que define el carácter (5x8; solo se usan los 5 bits bajos). Si es NULL no hace nada. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8c_source.html#l00174">174</a> del archivo <a class="el" href="lcd___s_t_m32_8c_source.html">lcd_STM32.c</a>.</p>
+
+</div>
+</div>
+<a id="ga24e7d586937f4d3e10832a4414afe161" name="ga24e7d586937f4d3e10832a4414afe161"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga24e7d586937f4d3e10832a4414afe161">&#9670;&#160;</a></span>LCD_DrawProgressBar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LCD_DrawProgressBar </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>row</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>col</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>width</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>percentage</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Formato: [&gt;&gt;&gt;&gt; ]. Si <code class="param">width</code> es menor a 2 no se dibuja nada. </p><dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">row</td><td>Fila donde se ubicará la barra. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">col</td><td>Columna inicial de la barra. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">width</td><td>Ancho total en caracteres (incluyendo los corchetes). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">percentage</td><td>Porcentaje de llenado (0 a 100; valores mayores se saturan a 100). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8c_source.html#l00252">252</a> del archivo <a class="el" href="lcd___s_t_m32_8c_source.html">lcd_STM32.c</a>.</p>
+
+</div>
+</div>
+<a id="ga36d493654e270263ce0ea9bc36b53b38" name="ga36d493654e270263ce0ea9bc36b53b38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga36d493654e270263ce0ea9bc36b53b38">&#9670;&#160;</a></span>LCD_Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LCD_Init </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_l_c_d___config__t.html">LCD_Config_t</a> *</td>          <td class="paramname"><span class="paramname"><em>config</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Ejecuta la secuencia de reseteo por software del HD44780, configura 2 líneas / matriz 5x8, incremento automático de dirección (Entry Mode), display encendido y cursor oculto. Debe llamarse una sola vez, antes de cualquier otra función del driver. </p><dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">config</td><td>Puntero a la estructura de configuración de pines <a class="el" href="struct_l_c_d___config__t.html">LCD_Config_t</a>. Si es NULL, la función retorna sin hacer nada. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8c_source.html#l00104">104</a> del archivo <a class="el" href="lcd___s_t_m32_8c_source.html">lcd_STM32.c</a>.</p>
+
+</div>
+</div>
+<a id="gae7816d8801b77a06a57bcdc1f01c3960" name="gae7816d8801b77a06a57bcdc1f01c3960"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae7816d8801b77a06a57bcdc1f01c3960">&#9670;&#160;</a></span>LCD_Print()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LCD_Print </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>str</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section note"><dt>Nota</dt><dd>No hace salto de línea automático. No permite imprimir el carácter CGRAM 0 (equivale a '\0'); para ello usar <a class="el" href="#gab0bfa8e6a5ecf32e685152b5c6cf4868" title="Escribe un único carácter en la posición actual del cursor.">LCD_WriteChar()</a>. </dd></dl>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">str</td><td>Puntero al string terminado en nulo. Si es NULL no hace nada. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8c_source.html#l00154">154</a> del archivo <a class="el" href="lcd___s_t_m32_8c_source.html">lcd_STM32.c</a>.</p>
+
+</div>
+</div>
+<a id="gad7b60b38553178f6d82f30a04ec69b0a" name="gad7b60b38553178f6d82f30a04ec69b0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad7b60b38553178f6d82f30a04ec69b0a">&#9670;&#160;</a></span>LCD_PrintFloat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LCD_PrintFloat </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>decimal_places</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>El redondeo se aplica sobre el valor completo, por lo que 0.999 con 2 decimales se muestra como "1.00". Casos especiales: NaN se muestra como "NaN" y valores con módulo mayor a 2.0e9 (incluye infinitos) como "Ovf". </p><dl class="section note"><dt>Nota</dt><dd>La precisión útil de un <code>float</code> es de ~7 dígitos significativos. </dd></dl>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>Valor de tipo float a mostrar. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">decimal_places</td><td>Cantidad de decimales (0 a <a class="el" href="#ga2e3714f011e22ed8080868ce0ea72fde">LCD_FLOAT_MAX_DECIMALS</a>). Con 0 no se imprime el punto decimal. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8c_source.html#l00202">202</a> del archivo <a class="el" href="lcd___s_t_m32_8c_source.html">lcd_STM32.c</a>.</p>
+
+</div>
+</div>
+<a id="ga77e06d987fd18d03e67607fa91f7a4d9" name="ga77e06d987fd18d03e67607fa91f7a4d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga77e06d987fd18d03e67607fa91f7a4d9">&#9670;&#160;</a></span>LCD_PrintInt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LCD_PrintInt </td>
+          <td>(</td>
+          <td class="paramtype">int32_t</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>Valor de 32 bits con signo a mostrar (soporta INT32_MIN). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8c_source.html#l00188">188</a> del archivo <a class="el" href="lcd___s_t_m32_8c_source.html">lcd_STM32.c</a>.</p>
+
+</div>
+</div>
+<a id="ga976c96eaf59a5c2bcb52cbae19a45493" name="ga976c96eaf59a5c2bcb52cbae19a45493"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga976c96eaf59a5c2bcb52cbae19a45493">&#9670;&#160;</a></span>LCD_SetCursor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LCD_SetCursor </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>row</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>col</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Los valores fuera de rango se saturan al máximo de la geometría configurada. </p><dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">row</td><td>Índice de la fila (0 a 1 para 16x2; 0 a 3 para 20x4). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">col</td><td>Índice de la columna (0 a 15 o 0 a 19 según la geometría). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8c_source.html#l00139">139</a> del archivo <a class="el" href="lcd___s_t_m32_8c_source.html">lcd_STM32.c</a>.</p>
+
+</div>
+</div>
+<a id="ga8a771bc32e087f1a6cdfbbcfeaa1e7c9" name="ga8a771bc32e087f1a6cdfbbcfeaa1e7c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8a771bc32e087f1a6cdfbbcfeaa1e7c9">&#9670;&#160;</a></span>LCD_SetCursorMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LCD_SetCursorMode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ga79a87f821848bfd98ff4109be3a14c7a">lcd_cursor_mode_t</a></td>          <td class="paramname"><span class="paramname"><em>mode</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mode</td><td>Modo seleccionado de la enumeración <a class="el" href="#ga79a87f821848bfd98ff4109be3a14c7a">lcd_cursor_mode_t</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8c_source.html#l00166">166</a> del archivo <a class="el" href="lcd___s_t_m32_8c_source.html">lcd_STM32.c</a>.</p>
+
+</div>
+</div>
+<a id="ga4b08bbb3051c9a5a839e3a2a2da8af92" name="ga4b08bbb3051c9a5a839e3a2a2da8af92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4b08bbb3051c9a5a839e3a2a2da8af92">&#9670;&#160;</a></span>LCD_Shift()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LCD_Shift </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ga5c097ce1c009851949a0a49c19eef65d">lcd_shift_dir_t</a></td>          <td class="paramname"><span class="paramname"><em>direction</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section note"><dt>Nota</dt><dd>El contenido de la DDRAM no se modifica, solo la ventana visible. </dd></dl>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">direction</td><td>Dirección de desplazamiento de la enumeración <a class="el" href="#ga5c097ce1c009851949a0a49c19eef65d">lcd_shift_dir_t</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8c_source.html#l00170">170</a> del archivo <a class="el" href="lcd___s_t_m32_8c_source.html">lcd_STM32.c</a>.</p>
+
+</div>
+</div>
+<a id="ga9fd59703a40f69454dd6c9b7dad58a66" name="ga9fd59703a40f69454dd6c9b7dad58a66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9fd59703a40f69454dd6c9b7dad58a66">&#9670;&#160;</a></span>LCD_Test()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LCD_Test </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#gaf4b71961185e1fa00ee5962123a349ae">lcd_type_t</a></td>          <td class="paramname"><span class="paramname"><em>type</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section note"><dt>Nota</dt><dd>Bloqueante (~15 s). Debe llamarse luego de <a class="el" href="#ga36d493654e270263ce0ea9bc36b53b38" title="Inicializa el hardware y la interfaz de 4 bits del LCD.">LCD_Init()</a>. </dd></dl>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">type</td><td>Geometría del display a testear (LCD_16X2 o LCD_20X4). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8c_source.html#l00278">278</a> del archivo <a class="el" href="lcd___s_t_m32_8c_source.html">lcd_STM32.c</a>.</p>
+
+</div>
+</div>
+<a id="gab0bfa8e6a5ecf32e685152b5c6cf4868" name="gab0bfa8e6a5ecf32e685152b5c6cf4868"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab0bfa8e6a5ecf32e685152b5c6cf4868">&#9670;&#160;</a></span>LCD_WriteChar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LCD_WriteChar </td>
+          <td>(</td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>Carácter ASCII a enviar, o índice 0-7 de un carácter personalizado. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8c_source.html#l00162">162</a> del archivo <a class="el" href="lcd___s_t_m32_8c_source.html">lcd_STM32.c</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Driver LCD STM32 HD44780: Referencia de la estructura LCD_Config_t</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Driver LCD STM32 HD44780<span id="projectnumber">&#160;2.1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Buscar',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Campos de datos</a>  </div>
+  <div class="headertitle"><div class="title">Referencia de la estructura LCD_Config_t<div class="ingroups"><a class="el" href="group___l_c_d___s_t_m32.html">Driver LCD HD44780 (STM32)</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Estructura de configuración y abstracción de hardware del LCD para STM32.  
+ <a href="#details">Más...</a></p>
+
+<p><code>#include &lt;<a class="el" href="lcd___s_t_m32_8h_source.html">lcd_STM32.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Campos de datos</h2></td></tr>
+<tr class="memitem:a39d5fa091ee9fceef00d71bd2fb98712" id="r_a39d5fa091ee9fceef00d71bd2fb98712"><td class="memItemLeft" align="right" valign="top">GPIO_TypeDef *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39d5fa091ee9fceef00d71bd2fb98712">port_rs</a></td></tr>
+<tr class="memitem:af0c41c092f1f012c13512169e9e0ee34" id="r_af0c41c092f1f012c13512169e9e0ee34"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0c41c092f1f012c13512169e9e0ee34">pin_rs</a></td></tr>
+<tr class="memdesc:af0c41c092f1f012c13512169e9e0ee34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Puerto y Pin para Register Select (RS)  <br /></td></tr>
+<tr class="memitem:ae97bab4683c30993cca4f526007e95b6" id="r_ae97bab4683c30993cca4f526007e95b6"><td class="memItemLeft" align="right" valign="top">GPIO_TypeDef *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae97bab4683c30993cca4f526007e95b6">port_en</a></td></tr>
+<tr class="memitem:a40cb0f882ad3760d80e4610f401b0dd6" id="r_a40cb0f882ad3760d80e4610f401b0dd6"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40cb0f882ad3760d80e4610f401b0dd6">pin_en</a></td></tr>
+<tr class="memdesc:a40cb0f882ad3760d80e4610f401b0dd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Puerto y Pin para Enable (EN)  <br /></td></tr>
+<tr class="memitem:aa13ac83a34fc186919f10e09a3ac84b8" id="r_aa13ac83a34fc186919f10e09a3ac84b8"><td class="memItemLeft" align="right" valign="top">GPIO_TypeDef *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa13ac83a34fc186919f10e09a3ac84b8">port_d4</a></td></tr>
+<tr class="memitem:ad4d96ca44ea7b39d502e0f0d01b13f16" id="r_ad4d96ca44ea7b39d502e0f0d01b13f16"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4d96ca44ea7b39d502e0f0d01b13f16">pin_d4</a></td></tr>
+<tr class="memdesc:ad4d96ca44ea7b39d502e0f0d01b13f16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Puerto y Pin para Data Bit 4 (D4)  <br /></td></tr>
+<tr class="memitem:a340bc5d688746ad14b7395e01f76d57a" id="r_a340bc5d688746ad14b7395e01f76d57a"><td class="memItemLeft" align="right" valign="top">GPIO_TypeDef *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a340bc5d688746ad14b7395e01f76d57a">port_d5</a></td></tr>
+<tr class="memitem:a804b426cd5ca30444e978beb4f978f42" id="r_a804b426cd5ca30444e978beb4f978f42"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a804b426cd5ca30444e978beb4f978f42">pin_d5</a></td></tr>
+<tr class="memdesc:a804b426cd5ca30444e978beb4f978f42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Puerto y Pin para Data Bit 5 (D5)  <br /></td></tr>
+<tr class="memitem:a3a45ed8d564ebb4920ba4f520fb1b115" id="r_a3a45ed8d564ebb4920ba4f520fb1b115"><td class="memItemLeft" align="right" valign="top">GPIO_TypeDef *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a45ed8d564ebb4920ba4f520fb1b115">port_d6</a></td></tr>
+<tr class="memitem:a954ef6a33a7c19ca73c800a04497123f" id="r_a954ef6a33a7c19ca73c800a04497123f"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a954ef6a33a7c19ca73c800a04497123f">pin_d6</a></td></tr>
+<tr class="memdesc:a954ef6a33a7c19ca73c800a04497123f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Puerto y Pin para Data Bit 6 (D6)  <br /></td></tr>
+<tr class="memitem:a3cadc839b63bdba7f4da9b73eac08261" id="r_a3cadc839b63bdba7f4da9b73eac08261"><td class="memItemLeft" align="right" valign="top">GPIO_TypeDef *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3cadc839b63bdba7f4da9b73eac08261">port_d7</a></td></tr>
+<tr class="memitem:ae867825da3e300a68903665708126c88" id="r_ae867825da3e300a68903665708126c88"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae867825da3e300a68903665708126c88">pin_d7</a></td></tr>
+<tr class="memdesc:ae867825da3e300a68903665708126c88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Puerto y Pin para Data Bit 7 (D7)  <br /></td></tr>
+<tr class="memitem:ae6ff643a4c0891912d3798d166d3feab" id="r_ae6ff643a4c0891912d3798d166d3feab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___l_c_d___s_t_m32.html#gaf4b71961185e1fa00ee5962123a349ae">lcd_type_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6ff643a4c0891912d3798d166d3feab">type</a></td></tr>
+<tr class="memdesc:ae6ff643a4c0891912d3798d166d3feab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tipo de display (LCD_16X2 o LCD_20X4)  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Mapea los puertos GPIO y pines individuales de control (RS, EN) y datos (D4-D7), permitiendo conectar el driver a cualquier pin del microcontrolador.</p>
+<div class="fragment"><div class="line"><a class="code hl_struct" href="struct_l_c_d___config__t.html">LCD_Config_t</a> cfg = {</div>
+<div class="line">    .port_rs = LCD_RS_GPIO_Port, .pin_rs = LCD_RS_Pin,</div>
+<div class="line">    .port_en = LCD_EN_GPIO_Port, .pin_en = LCD_EN_Pin,</div>
+<div class="line">    .port_d4 = LCD_D4_GPIO_Port, .pin_d4 = LCD_D4_Pin,</div>
+<div class="line">    .port_d5 = LCD_D5_GPIO_Port, .pin_d5 = LCD_D5_Pin,</div>
+<div class="line">    .port_d6 = LCD_D6_GPIO_Port, .pin_d6 = LCD_D6_Pin,</div>
+<div class="line">    .port_d7 = LCD_D7_GPIO_Port, .pin_d7 = LCD_D7_Pin,</div>
+<div class="line">    .type    = <a class="code hl_enumvalue" href="group___l_c_d___s_t_m32.html#ggaf4b71961185e1fa00ee5962123a349aea6c6af96993a3bda95b337da79bb9f5a6">LCD_16X2</a></div>
+<div class="line">};</div>
+<div class="line"><a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga36d493654e270263ce0ea9bc36b53b38">LCD_Init</a>(&amp;cfg);</div>
+<div class="ttc" id="agroup___l_c_d___s_t_m32_html_ga36d493654e270263ce0ea9bc36b53b38"><div class="ttname"><a href="group___l_c_d___s_t_m32.html#ga36d493654e270263ce0ea9bc36b53b38">LCD_Init</a></div><div class="ttdeci">void LCD_Init(const LCD_Config_t *config)</div><div class="ttdoc">Inicializa el hardware y la interfaz de 4 bits del LCD.</div><div class="ttdef"><b>Definition</b> <a href="lcd___s_t_m32_8c_source.html#l00104">lcd_STM32.c:104</a></div></div>
+<div class="ttc" id="agroup___l_c_d___s_t_m32_html_ggaf4b71961185e1fa00ee5962123a349aea6c6af96993a3bda95b337da79bb9f5a6"><div class="ttname"><a href="group___l_c_d___s_t_m32.html#ggaf4b71961185e1fa00ee5962123a349aea6c6af96993a3bda95b337da79bb9f5a6">LCD_16X2</a></div><div class="ttdeci">@ LCD_16X2</div><div class="ttdoc">Display de 16 columnas por 2 filas.</div><div class="ttdef"><b>Definition</b> <a href="lcd___s_t_m32_8h_source.html#l00044">lcd_STM32.h:44</a></div></div>
+<div class="ttc" id="astruct_l_c_d___config__t_html"><div class="ttname"><a href="struct_l_c_d___config__t.html">LCD_Config_t</a></div><div class="ttdoc">Estructura de configuración y abstracción de hardware del LCD para STM32.</div><div class="ttdef"><b>Definition</b> <a href="lcd___s_t_m32_8h_source.html#l00084">lcd_STM32.h:84</a></div></div>
+</div><!-- fragment --> 
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8h_source.html#l00084">84</a> del archivo <a class="el" href="lcd___s_t_m32_8h_source.html">lcd_STM32.h</a>.</p>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Documentación de campos</h2>
+<a id="ad4d96ca44ea7b39d502e0f0d01b13f16" name="ad4d96ca44ea7b39d502e0f0d01b13f16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4d96ca44ea7b39d502e0f0d01b13f16">&#9670;&#160;</a></span>pin_d4</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t pin_d4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8h_source.html#l00087">87</a> del archivo <a class="el" href="lcd___s_t_m32_8h_source.html">lcd_STM32.h</a>.</p>
+
+</div>
+</div>
+<a id="a804b426cd5ca30444e978beb4f978f42" name="a804b426cd5ca30444e978beb4f978f42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a804b426cd5ca30444e978beb4f978f42">&#9670;&#160;</a></span>pin_d5</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t pin_d5</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8h_source.html#l00088">88</a> del archivo <a class="el" href="lcd___s_t_m32_8h_source.html">lcd_STM32.h</a>.</p>
+
+</div>
+</div>
+<a id="a954ef6a33a7c19ca73c800a04497123f" name="a954ef6a33a7c19ca73c800a04497123f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a954ef6a33a7c19ca73c800a04497123f">&#9670;&#160;</a></span>pin_d6</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t pin_d6</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8h_source.html#l00089">89</a> del archivo <a class="el" href="lcd___s_t_m32_8h_source.html">lcd_STM32.h</a>.</p>
+
+</div>
+</div>
+<a id="ae867825da3e300a68903665708126c88" name="ae867825da3e300a68903665708126c88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae867825da3e300a68903665708126c88">&#9670;&#160;</a></span>pin_d7</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t pin_d7</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8h_source.html#l00090">90</a> del archivo <a class="el" href="lcd___s_t_m32_8h_source.html">lcd_STM32.h</a>.</p>
+
+</div>
+</div>
+<a id="a40cb0f882ad3760d80e4610f401b0dd6" name="a40cb0f882ad3760d80e4610f401b0dd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40cb0f882ad3760d80e4610f401b0dd6">&#9670;&#160;</a></span>pin_en</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t pin_en</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8h_source.html#l00086">86</a> del archivo <a class="el" href="lcd___s_t_m32_8h_source.html">lcd_STM32.h</a>.</p>
+
+</div>
+</div>
+<a id="af0c41c092f1f012c13512169e9e0ee34" name="af0c41c092f1f012c13512169e9e0ee34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0c41c092f1f012c13512169e9e0ee34">&#9670;&#160;</a></span>pin_rs</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t pin_rs</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8h_source.html#l00085">85</a> del archivo <a class="el" href="lcd___s_t_m32_8h_source.html">lcd_STM32.h</a>.</p>
+
+</div>
+</div>
+<a id="aa13ac83a34fc186919f10e09a3ac84b8" name="aa13ac83a34fc186919f10e09a3ac84b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa13ac83a34fc186919f10e09a3ac84b8">&#9670;&#160;</a></span>port_d4</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GPIO_TypeDef* port_d4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8h_source.html#l00087">87</a> del archivo <a class="el" href="lcd___s_t_m32_8h_source.html">lcd_STM32.h</a>.</p>
+
+</div>
+</div>
+<a id="a340bc5d688746ad14b7395e01f76d57a" name="a340bc5d688746ad14b7395e01f76d57a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a340bc5d688746ad14b7395e01f76d57a">&#9670;&#160;</a></span>port_d5</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GPIO_TypeDef* port_d5</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8h_source.html#l00088">88</a> del archivo <a class="el" href="lcd___s_t_m32_8h_source.html">lcd_STM32.h</a>.</p>
+
+</div>
+</div>
+<a id="a3a45ed8d564ebb4920ba4f520fb1b115" name="a3a45ed8d564ebb4920ba4f520fb1b115"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a45ed8d564ebb4920ba4f520fb1b115">&#9670;&#160;</a></span>port_d6</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GPIO_TypeDef* port_d6</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8h_source.html#l00089">89</a> del archivo <a class="el" href="lcd___s_t_m32_8h_source.html">lcd_STM32.h</a>.</p>
+
+</div>
+</div>
+<a id="a3cadc839b63bdba7f4da9b73eac08261" name="a3cadc839b63bdba7f4da9b73eac08261"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cadc839b63bdba7f4da9b73eac08261">&#9670;&#160;</a></span>port_d7</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GPIO_TypeDef* port_d7</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8h_source.html#l00090">90</a> del archivo <a class="el" href="lcd___s_t_m32_8h_source.html">lcd_STM32.h</a>.</p>
+
+</div>
+</div>
+<a id="ae97bab4683c30993cca4f526007e95b6" name="ae97bab4683c30993cca4f526007e95b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae97bab4683c30993cca4f526007e95b6">&#9670;&#160;</a></span>port_en</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GPIO_TypeDef* port_en</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8h_source.html#l00086">86</a> del archivo <a class="el" href="lcd___s_t_m32_8h_source.html">lcd_STM32.h</a>.</p>
+
+</div>
+</div>
+<a id="a39d5fa091ee9fceef00d71bd2fb98712" name="a39d5fa091ee9fceef00d71bd2fb98712"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39d5fa091ee9fceef00d71bd2fb98712">&#9670;&#160;</a></span>port_rs</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GPIO_TypeDef* port_rs</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8h_source.html#l00085">85</a> del archivo <a class="el" href="lcd___s_t_m32_8h_source.html">lcd_STM32.h</a>.</p>
+
+</div>
+</div>
+<a id="ae6ff643a4c0891912d3798d166d3feab" name="ae6ff643a4c0891912d3798d166d3feab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6ff643a4c0891912d3798d166d3feab">&#9670;&#160;</a></span>type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group___l_c_d___s_t_m32.html#gaf4b71961185e1fa00ee5962123a349ae">lcd_type_t</a> type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="lcd___s_t_m32_8h_source.html#l00091">91</a> del archivo <a class="el" href="lcd___s_t_m32_8h_source.html">lcd_STM32.h</a>.</p>
+
+</div>
+</div>
+<hr/>La documentación de esta estructura está generada del siguiente archivo:<ul>
+<li><a class="el" href="lcd___s_t_m32_8h_source.html">lcd_STM32.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

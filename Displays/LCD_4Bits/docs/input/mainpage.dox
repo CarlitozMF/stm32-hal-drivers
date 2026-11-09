@@ -1,0 +1,62 @@
+/**
+ * @mainpage Driver LCD Hitachi HD44780 - STM32 (Modo 4 bits)
+ * 
+ * @section intro_sec Introducción
+ * Driver genérico y portable de **Capa 2 (Driver / HAL)** diseñado para controlar pantallas
+ * alfanuméricas HD44780 (16x2 y 20x4) sobre la capa de abstracción **STM32 HAL**.
+ *
+ * Implementa mapeo dinámico de pines GPIO (RS, EN, D4-D7), permitiendo conectar el display
+ * a cualquier puerto y pin del microcontrolador sin restricciones de hardware.
+ *
+ * @section features_sec Características Principales
+ * - Interfaz de 4 bits para ahorro de pines de I/O.
+ * - Soporte nativo para geometrías **16x2** y **20x4**.
+ * - Impresión avanzada de datos: Enteros con signo (`int32_t`), Flotantes (`float`) con control
+ *   de decimales y redondeo integral, y barras de progreso (`[>>>>   ]`).
+ * - Generación de caracteres personalizados en memoria CGRAM (hasta 8 patrones 5x8).
+ * - Tiempos de microsegundos garantizados mediante `utils.h` (DWT CYCCNT o SysTick).
+ *
+ * @section hw_sec Requisitos de Hardware y Conexión
+ * | Pin LCD | Función | Conexión STM32 / Circuito |
+ * | :--- | :--- | :--- |
+ * | **VSS / VDD / V0** | Alimentación y Contraste | GND, 5V, Potenciómetro 10k |
+ * | **RS / EN** | Control | GPIOs cualesquiera configurados como Salida Push-Pull |
+ * | **R/W** | Lectura/Escritura | **GND** (El driver opera solo en modo escritura) |
+ * | **D4 - D7** | Bus de datos (4 bits) | GPIOs cualesquiera configurados como Salida Push-Pull |
+ * | **D0 - D3** | Bus no usado | Desconectados o GND |
+ *
+ * @section usage_sec Ejemplo de Inicialización
+ * @code{.c}
+ * #include "lcd_STM32.h"
+
+ * LCD_Config_t lcd_cfg = {
+ *     .port_rs = LCD_RS_GPIO_Port, .pin_rs = LCD_RS_Pin,
+ *     .port_en = LCD_EN_GPIO_Port, .pin_en = LCD_EN_Pin,
+ *     .port_d4 = LCD_D4_GPIO_Port, .pin_d4 = LCD_D4_Pin,
+ *     .port_d5 = LCD_D5_GPIO_Port, .pin_d5 = LCD_D5_Pin,
+ *     .port_d6 = LCD_D6_GPIO_Port, .pin_d6 = LCD_D6_Pin,
+ *     .port_d7 = LCD_D7_GPIO_Port, .pin_d7 = LCD_D7_Pin,
+ *     .type    = LCD_16X2
+ * };
+
+ * int main(void) {
+ *     HAL_Init();
+ *     SystemClock_Config();
+ *     MX_GPIO_Init();
+
+ *     // Inicializar pantalla y retardos
+ *     LCD_Init(&lcd_cfg);
+
+ *     LCD_SetCursor(0, 0);
+ *     LCD_Print("UTN FRT 2026");
+ *     LCD_SetCursor(1, 0);
+ *     LCD_PrintFloat(3.14159f, 2);
+
+ *     while (1) { }
+ * }
+ * @endcode
+ *
+ * @author Mamani Flores Carlos (UTN FRT)
+ * @version 2.1
+ * @date 2026
+ */

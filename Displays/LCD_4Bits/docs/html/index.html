@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Driver LCD STM32 HD44780: Driver LCD Hitachi HD44780 - STM32 (Modo 4 bits)</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Driver LCD STM32 HD44780<span id="projectnumber">&#160;2.1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Buscar',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">Driver LCD Hitachi HD44780 - STM32 (Modo 4 bits) </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><h1 class="doxsection"><a class="anchor" id="intro_sec"></a>
+Introducción</h1>
+<p>Driver genérico y portable de <b>Capa 2 (Driver / HAL)</b> diseñado para controlar pantallas alfanuméricas HD44780 (16x2 y 20x4) sobre la capa de abstracción <b>STM32 HAL</b>.</p>
+<p>Implements mapeo dinámico de pines GPIO (RS, EN, D4-D7), permitiendo conectar el display a cualquier puerto y pin del microcontrolador sin restricciones de hardware.</p>
+<h1 class="doxsection"><a class="anchor" id="features_sec"></a>
+Características Principales</h1>
+<ul>
+<li>Interfaz de 4 bits para ahorro de pines de I/O.</li>
+<li>Soporte nativo para geometrías <b>16x2</b> y <b>20x4</b>.</li>
+<li>Impresión avanzada de datos: Enteros con signo (<span class="tt">int32_t</span>), Flotantes (<span class="tt">float</span>) con control de decimales y redondeo integral, y barras de progreso (<span class="tt">[&gt;&gt;&gt;&gt;   ]</span>).</li>
+<li>Generación de caracteres personalizados en memoria CGRAM (hasta 8 patrones 5x8).</li>
+<li>Tiempos de microsegundos garantizados mediante <span class="tt">utils.h</span> (DWT CYCCNT o SysTick).</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="hw_sec"></a>
+Requisitos de Hardware y Conexión</h1>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">Pin LCD  </th><th class="markdownTableHeadLeft">Función  </th><th class="markdownTableHeadLeft">Conexión STM32 / Circuito  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><b>VSS / VDD / V0</b>  </td><td class="markdownTableBodyLeft">Alimentación y Contraste  </td><td class="markdownTableBodyLeft">GND, 5V, Potenciómetro 10k  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><b>RS / EN</b>  </td><td class="markdownTableBodyLeft">Control  </td><td class="markdownTableBodyLeft">GPIOs cualesquiera configurados como Salida Push-Pull  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><b>R/W</b>  </td><td class="markdownTableBodyLeft">Lectura/Escritura  </td><td class="markdownTableBodyLeft"><b>GND</b> (El driver opera solo en modo escritura)  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><b>D4 - D7</b>  </td><td class="markdownTableBodyLeft">Bus de datos (4 bits)  </td><td class="markdownTableBodyLeft">GPIOs cualesquiera configurados como Salida Push-Pull  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><b>D0 - D3</b>  </td><td class="markdownTableBodyLeft">Bus no usado  </td><td class="markdownTableBodyLeft">Desconectados o GND  </td></tr>
+</table>
+<h1 class="doxsection"><a class="anchor" id="usage_sec"></a>
+Ejemplo de Inicialización</h1>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="lcd___s_t_m32_8h.html">lcd_STM32.h</a>&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_struct" href="struct_l_c_d___config__t.html">LCD_Config_t</a> lcd_cfg = {</div>
+<div class="line">    .port_rs = LCD_RS_GPIO_Port, .pin_rs = LCD_RS_Pin,</div>
+<div class="line">    .port_en = LCD_EN_GPIO_Port, .pin_en = LCD_EN_Pin,</div>
+<div class="line">    .port_d4 = LCD_D4_GPIO_Port, .pin_d4 = LCD_D4_Pin,</div>
+<div class="line">    .port_d5 = LCD_D5_GPIO_Port, .pin_d5 = LCD_D5_Pin,</div>
+<div class="line">    .port_d6 = LCD_D6_GPIO_Port, .pin_d6 = LCD_D6_Pin,</div>
+<div class="line">    .port_d7 = LCD_D7_GPIO_Port, .pin_d7 = LCD_D7_Pin,</div>
+<div class="line">    .type    = <a class="code hl_enumvalue" href="group___l_c_d___s_t_m32.html#ggaf4b71961185e1fa00ee5962123a349aea6c6af96993a3bda95b337da79bb9f5a6">LCD_16X2</a></div>
+<div class="line">};</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">void</span>) {</div>
+<div class="line">    HAL_Init();</div>
+<div class="line">    SystemClock_Config();</div>
+<div class="line">    MX_GPIO_Init();</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Inicializar pantalla y retardos</span></div>
+<div class="line">    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga36d493654e270263ce0ea9bc36b53b38">LCD_Init</a>(&amp;lcd_cfg);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga976c96eaf59a5c2bcb52cbae19a45493">LCD_SetCursor</a>(0, 0);</div>
+<div class="line">    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gae7816d8801b77a06a57bcdc1f01c3960">LCD_Print</a>(<span class="stringliteral">&quot;UTN FRT 2026&quot;</span>);</div>
+<div class="line">    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#ga976c96eaf59a5c2bcb52cbae19a45493">LCD_SetCursor</a>(1, 0);</div>
+<div class="line">    <a class="code hl_function" href="group___l_c_d___s_t_m32.html#gad7b60b38553178f6d82f30a04ec69b0a">LCD_PrintFloat</a>(3.14159f, 2);</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">while</span> (1) { }</div>
+<div class="line">}</div>
+<div class="ttc" id="agroup___l_c_d___s_t_m32_html_ga36d493654e270263ce0ea9bc36b53b38"><div class="ttname"><a href="group___l_c_d___s_t_m32.html#ga36d493654e270263ce0ea9bc36b53b38">LCD_Init</a></div><div class="ttdeci">void LCD_Init(const LCD_Config_t *config)</div><div class="ttdoc">Inicializa el hardware y la interfaz de 4 bits del LCD.</div><div class="ttdef"><b>Definition</b> <a href="lcd___s_t_m32_8c_source.html#l00104">lcd_STM32.c:104</a></div></div>
+<div class="ttc" id="agroup___l_c_d___s_t_m32_html_ga976c96eaf59a5c2bcb52cbae19a45493"><div class="ttname"><a href="group___l_c_d___s_t_m32.html#ga976c96eaf59a5c2bcb52cbae19a45493">LCD_SetCursor</a></div><div class="ttdeci">void LCD_SetCursor(uint8_t row, uint8_t col)</div><div class="ttdoc">Posiciona el cursor en una fila y columna específica.</div><div class="ttdef"><b>Definition</b> <a href="lcd___s_t_m32_8c_source.html#l00139">lcd_STM32.c:139</a></div></div>
+<div class="ttc" id="agroup___l_c_d___s_t_m32_html_gad7b60b38553178f6d82f30a04ec69b0a"><div class="ttname"><a href="group___l_c_d___s_t_m32.html#gad7b60b38553178f6d82f30a04ec69b0a">LCD_PrintFloat</a></div><div class="ttdeci">void LCD_PrintFloat(float value, uint8_t decimal_places)</div><div class="ttdoc">Imprime un número flotante con cantidad fija de decimales.</div><div class="ttdef"><b>Definition</b> <a href="lcd___s_t_m32_8c_source.html#l00202">lcd_STM32.c:202</a></div></div>
+<div class="ttc" id="agroup___l_c_d___s_t_m32_html_gae7816d8801b77a06a57bcdc1f01c3960"><div class="ttname"><a href="group___l_c_d___s_t_m32.html#gae7816d8801b77a06a57bcdc1f01c3960">LCD_Print</a></div><div class="ttdeci">void LCD_Print(const char *str)</div><div class="ttdoc">Imprime una cadena de caracteres en la posición actual del cursor.</div><div class="ttdef"><b>Definition</b> <a href="lcd___s_t_m32_8c_source.html#l00154">lcd_STM32.c:154</a></div></div>
+<div class="ttc" id="agroup___l_c_d___s_t_m32_html_ggaf4b71961185e1fa00ee5962123a349aea6c6af96993a3bda95b337da79bb9f5a6"><div class="ttname"><a href="group___l_c_d___s_t_m32.html#ggaf4b71961185e1fa00ee5962123a349aea6c6af96993a3bda95b337da79bb9f5a6">LCD_16X2</a></div><div class="ttdeci">@ LCD_16X2</div><div class="ttdoc">Display de 16 columnas por 2 filas.</div><div class="ttdef"><b>Definition</b> <a href="lcd___s_t_m32_8h_source.html#l00044">lcd_STM32.h:44</a></div></div>
+<div class="ttc" id="alcd___s_t_m32_8h_html"><div class="ttname"><a href="lcd___s_t_m32_8h.html">lcd_STM32.h</a></div><div class="ttdoc">Driver de Capa 2 para pantallas LCD Hitachi HD44780 en modo 4 bits (STM32 HAL).</div></div>
+<div class="ttc" id="astruct_l_c_d___config__t_html"><div class="ttname"><a href="struct_l_c_d___config__t.html">LCD_Config_t</a></div><div class="ttdoc">Estructura de configuración y abstracción de hardware del LCD para STM32.</div><div class="ttdef"><b>Definition</b> <a href="lcd___s_t_m32_8h_source.html#l00084">lcd_STM32.h:84</a></div></div>
+</div><!-- fragment --><dl class="section author"><dt>Autor</dt><dd>Mamani Flores Carlos (UTN FRT) </dd></dl>
+<dl class="section version"><dt>Versión</dt><dd>2.1 </dd></dl>
+<dl class="section date"><dt>Fecha</dt><dd>2026 </dd></dl>
+</div></div><!-- PageDoc -->
+<a href="doxygen_crawl.html"></a>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
