@@ -1,5 +1,9 @@
 # Driver No Bloqueante para Sensor Ultrasónico HC-SR04 en STM32
 
+<p align="center">
+  <img src="../HCSR04/docs/img/portada.png" alt="Portada" width="50%">
+</p>
+
 Driver genérico, portátil y de alto rendimiento en lenguaje **C (C99)** para la medición de distancia no bloqueante utilizando **uno o varios sensores ultrasónicos HC-SR04** (o compatibles como HY-SRF05) en cualquier microcontrolador **STM32** bajo la capa **ST HAL**.
 
 Desarrollado y mantenido por **Mamani Flores Carlos (UTN FRT)** para el repositorio **`DriversST-Github`** (materia *Técnicas Digitales 2*).
