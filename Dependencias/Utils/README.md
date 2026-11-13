@@ -51,19 +51,21 @@ El módulo implementa un esquema de **fallback transparente de doble capa** para
 
 ### 1. Conversión de Microsegundos a Ciclos de CPU
 
-Dado el reloj global del sistema $f_{\text{CPU}} = \text{SystemCoreClock}$ (en $\text{Hz}$):
+Dado el reloj global del sistema $f_{\text{CPU}} = \text{SystemCoreClock}$ (en $\text{Hz}$), se define $C_{\mu\text{s}}$ como la cantidad de ciclos por microsegundo (`cycles_per_us` en el código):
 
-$$\text{cycles\_per\_us} = \left\lfloor \frac{f_{\text{CPU}}}{10^6} \right\rfloor$$
+$$C_{\mu\text{s}} = \left\lfloor \frac{f_{\text{CPU}}}{10^6} \right\rfloor$$
 
-$$\text{ticks\_totales} = \text{us} \times \text{cycles\_per\_us}$$
+$$N_{\text{total}} = t_{\mu\text{s}} \times C_{\mu\text{s}}$$
 
-*Ejemplo:* Para un STM32F429/F439 a $180\text{ MHz}$, $\text{cycles\_per\_us} = 180$. Un retardo de $3\ \mu\text{s}$ equivale a $540$ ciclos de reloj del núcleo.
+donde $t_{\mu\text{s}}$ es el retardo solicitado (`us` en el código) y $N_{\text{total}}$ son los ticks totales (`ticks_totales`).
+
+*Ejemplo:* Para un STM32F429/F439 a $180\ \text{MHz}$, $C_{\mu\text{s}} = 180$. Un retardo de $3\ \mu\text{s}$ equivale a $540$ ciclos de reloj del núcleo.
 
 ### 2. Aritmética Módulo $2^{32}$ sin Problema de Desbordamiento (*Rollover*)
 
-El contador `DWT->CYCCNT` es de 32 bits y se reinicia a $0$ al superar $2^{32}-1$ ($4.294.967.295$). Debido a la representación en complemento a dos del lenguaje C para tipos `uint32_t`, la resta resta el valor inicial sin importar si ocurrió desbordamiento en el intervalo:
+El contador `DWT->CYCCNT` es de 32 bits y se reinicia a $0$ al superar $2^{32}-1$ ($4\,294\,967\,295$). Debido a la aritmética modular de los tipos `uint32_t` en C, la resta entre el valor actual y el inicial da el resultado correcto sin importar si ocurrió un desbordamiento en el intervalo:
 
-$$\Delta N = (N_{\text{actual}} - N_{\text{inicio}}) \pmod{2^{32}}$$
+$$\Delta N = \left( N_{\text{actual}} - N_{\text{inicio}} \right) \bmod 2^{32}$$
 
 Esto garantiza que `Utils_DelayUs` nunca quede atrapado en un bucle infinito durante el *wrap-around* del contador.
 
