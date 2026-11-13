@@ -89,15 +89,24 @@ La temperatura en grados Celsius ($T\ [^\circ\text{C}]$) se obtiene dividiendo l
 $$T\ [^\circ\text{C}] = \frac{V_{\text{out}}\ [\text{mV}]}{10\ \text{mV}/^\circ\text{C}} = \frac{N_{\text{RAW}} \times V_{\text{REF}}}{(2^B - 1) \times 10}$$
 
 ### 3. Filtro de Media Móvil de Ventana Circular ($O(1)$)
-En cada interrupción del ADC, para una ventana de tamaño $K = 8$:
 
-$$\text{filter\_sum}_k = \text{filter\_sum}_{k-1} - \text{buffer}[\text{idx}] + \text{muestra}_k$$
+En cada interrupción del ADC, para una ventana de tamaño $K = 8$. Se definen:
 
-$$\text{buffer}[\text{idx}] = \text{muestra}_k$$
+- $S_k$: suma acumulada de la ventana (`filter_sum` en el código).
+- $B[i]$: buffer circular de muestras (`buffer`).
+- $i$: índice actual del buffer (`idx`).
+- $x_k$: muestra actual del ADC (`muestra`).
+- $\bar{x}_k$: promedio crudo (`avg_raw`).
 
-$$\text{idx} = (\text{idx} + 1) \ \& \ (K - 1)$$
+$$S_k = S_{k-1} - B[i] + x_k$$
 
-$$\text{avg\_raw}_k = \frac{\text{filter\_sum}_k}{\min(k, K)}$$
+$$B[i] = x_k$$
+
+$$i \leftarrow (i + 1) \bmod K$$
+
+$$\bar{x}_k = \frac{S_k}{\min(k,\, K)}$$
+
+En el código, como $K$ es potencia de 2, el módulo se implementa con la máscara de bits `(idx + 1) & (K - 1)`, que es equivalente y más rápida.
 
 ---
 

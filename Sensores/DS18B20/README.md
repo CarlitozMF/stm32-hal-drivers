@@ -68,25 +68,25 @@ Permite gestionar desde un sensor único (*monopunto*) hasta múltiples sensores
 
 ## Configuración del Timer y Prescaler ($PSC$)
 
-El driver requiere que el contador del Timer avance exactamente a **$1\text{ MHz}$** (1 tick por microsegundo) y que el registro de auto-recarga (**ARR**) sea mayor o igual a **65535** (`0xFFFF`).
+El driver requiere que el contador del Timer avance exactamente a **$1\ \text{MHz}$** (1 tick por microsegundo) y que el registro de auto-recarga (**ARR**) sea mayor o igual a **65535** (`0xFFFF`).
 
 ### Fórmula del Prescaler ($PSC$):
 
-$$PSC = \frac{f_{\text{TIM\_CLK}}}{1.000.000} - 1$$
+$$PSC = \frac{f_{\text{TIM}}}{10^6} - 1$$
 
-> **¡Atención con la Frecuencia del Timer ($f_{\text{TIM\_CLK}}$)!**  
+> **¡Atención con la frecuencia del Timer ($f_{\text{TIM}}$)!**  
 > Si el divisor de bus APB correspondiente es diferente de /1, la frecuencia enviada al Timer es el **doble de la frecuencia del reloj APB** ($2 \times f_{\text{APB}}$).
 
 ### Ejemplos Prácticos de Configuración:
 
 1. **NUCLEO-F439ZI (TIM2 en Bus APB1, SYSCLK = 180 MHz):**
-   - $PCLK1 = 45\text{ MHz}$ (Divisor APB1 = /4) $\rightarrow f_{\text{TIM\_CLK}} = 2 \times 45\text{ MHz} = 90\text{ MHz}$.
-   - $$PSC = \frac{90.000.000}{1.000.000} - 1 = 90 - 1 = 89$$
+   - $PCLK1 = 45\ \text{MHz}$ (Divisor APB1 = /4) $\rightarrow f_{\text{TIM}} = 2 \times 45\ \text{MHz} = 90\ \text{MHz}$.
+   - $$PSC = \frac{90 \times 10^6}{10^6} - 1 = 90 - 1 = 89$$
    - **En CubeMX:** `Prescaler = 89`, `Counter Period (ARR) = 4294967295` (32 bits).
 
 2. **STM32F103 Blue Pill (TIM2 en Bus APB1, SYSCLK = 72 MHz):**
-   - $PCLK1 = 36\text{ MHz}$ (Divisor APB1 = /2) $\rightarrow f_{\text{TIM\_CLK}} = 2 \times 36\text{ MHz} = 72\text{ MHz}$.
-   - $$PSC = \frac{72.000.000}{1.000.000} - 1 = 72 - 1 = 71$$
+   - $PCLK1 = 36\ \text{MHz}$ (Divisor APB1 = /2) $\rightarrow f_{\text{TIM}} = 2 \times 36\ \text{MHz} = 72\ \text{MHz}$.
+   - $$PSC = \frac{72 \times 10^6}{10^6} - 1 = 72 - 1 = 71$$
    - **En CubeMX:** `Prescaler = 71`, `Counter Period (ARR) = 65535`.
 
 ---
