@@ -184,12 +184,13 @@ stateDiagram-v2
 ## Conversiones y Fórmulas
 
 1. **Temperatura compensada:**  
-   $$T = \frac{B_5 + 8}{16} \cdot 0.1 \quad [^\circ\text{C}]$$
+   $$T = \frac{B_5 + 8}{16} \cdot 0.1 \quad \left(^\circ\mathrm{C}\right)$$
 2. **Presión compensada:**  
-   Calculada mediante el algoritmo de 11 coeficientes de Bosch ($AC_1 \dots AC_6, B_1, B_2, MB, MC, MD$). Retorna en **Pascales (Pa)** ($1\text{ hPa} = 100\text{ Pa}$).
-3. **Altitud barométrica (Metros):**  
-   $$\text{Altitud} = 44330 \cdot \left(1 - \left(\frac{P_{\text{medida}}}{P_{\text{nivel\_mar}}}\right)^{0.1903}\right) \quad [\text{m}]$$
+   Calculada mediante el algoritmo de 11 coeficientes de Bosch ($AC_1, \dots, AC_6, B_1, B_2, MB, MC, MD$). Retorna en **Pascales (Pa)** ($1\ \text{hPa} = 100\ \text{Pa}$).
+3. **Altitud barométrica (metros):**  
+   Se define $P$ como la presión medida y $P_0$ como la presión a nivel del mar (`nivel_mar` en el código):
 
+   $$h = 44330 \cdot \left(1 - \left(\frac{P}{P_0}\right)^{0.1903}\right) \quad \left(\mathrm{m}\right)$$
 ---
 
 ## Parámetros configurables
