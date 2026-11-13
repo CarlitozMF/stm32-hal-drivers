@@ -89,9 +89,9 @@ $$
 
    * Prescaler (`PSC`): Ajustar para obtener un reloj de $1\text{ MHz}$ ($1\ \mu\text{s}$ por tick).
 
-$$
+```math
 \text{PSC} = \left(\frac{f_{\text{TIM\_CLK}}}{1000000}\right) - 1
-$$
+```
 
 * Auto-Reload Register (`ARR`): Configurar al valor máximo de 16 bits (`65535`).
 
