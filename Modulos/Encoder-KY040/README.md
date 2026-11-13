@@ -181,7 +181,7 @@ Dado que un *clic* físico del encoder KY-040 genera $4$ cambios de estado conse
 - $A$: acumulador de pasos (`accum`).
 - $S_{\text{det}}$: pasos por detent (`KY040_STEPS_PER_DETENT`).
 
-$$P_{k+1} = \operatorname{clamp}\left(P_k \pm 1,\; P_{\min},\; P_{\max}\right) \quad \text{cuando} \quad |A| \ge S_{\text{det}}$$
+$$P_{k+1} = \mathrm{clamp}\left(P_k \pm 1,\; P_{\min},\; P_{\max}\right) \quad \text{cuando} \quad |A| \ge S_{\text{det}}$$
 
 ---
 
