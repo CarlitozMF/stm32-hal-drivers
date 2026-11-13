@@ -14,7 +14,7 @@ Todos los drivers están optimizados para operar sin bloquear el bucle principal
 | [**`DS18B20`**](DS18B20/) | 1-Wire (Timer $1\mu\text{s}$ HW) | No | `v1.1` | **Estable** | Sensor de temperatura digital de precisión (9 a 12 bits) con FSM no bloqueante, cálculo CRC8 y soporte Monopunto/Multipunto. | 
 | [**`HTU2X`**](HTU2X/) | I2C | No | `v2.2` | **Estable** | Sensor de humedad relativa y temperatura de alta precisión (HTU21D / HTU20D) con cálculo de suma de comprobación CRC-8. | 
 | [**`LM35`**](LM35/) | ADC (Interrupción `IT`) | No | `v1.2` | **Estable** | Sensor de temperatura analógico ($10\text{ mV}/^\circ\text{C}$). Filtro de media móvil circular $O(1)$ en ISR y calibración a $3.3\text{V}$. | 
-| [**`HC-SR04`**](HC-SR04/) | TIM Input Capture (IT) | No | `v1.2` | **Estable** | Sensor de distancia ultrasónico ($2\dots400\text{ cm}$). Medición asíncrona no bloqueante, soporte multi-sensor y filtro de mediana. |
+| [**`HC-SR04`**](HCSR04/) | TIM Input Capture (IT) | No | `v1.2` | **Estable** | Sensor de distancia ultrasónico ($2\dots400\text{ cm}$). Medición asíncrona no bloqueante, soporte multi-sensor y filtro de mediana. |
 
 
 ## 🚀 Estructura de las Carpetas

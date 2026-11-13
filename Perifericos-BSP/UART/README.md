@@ -66,17 +66,23 @@ Driver de Capa 2 (HAL) 100% no bloqueante para periféricos UART/USART en STM32,
 4. En la sección de callbacks del usuario (por ejemplo en `main.c` o `stm32f4xx_it.c`), redirige las llamadas de la HAL hacia los manejadores del driver:
 
    ```c
-   void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
-       UART_Driver_RxHandler(huart);
-   }
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
+	if (huart->Instance == USARTX) {    //USARTX o UARTX
+		UART_Driver_RxHandler();
+	}
+}
 
-   void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart) {
-       UART_Driver_TxHandler(huart);
-   }
+void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart) {
+	if (huart->Instance == USARTX) {    //USARTX o UARTX
+		UART_Driver_TxHandler();
+	}
+}
 
-   void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart) {
-       UART_Driver_ErrorHandler(huart);
-   }
+void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart) {
+	if (huart->Instance == USARTX) {    //USARTX o UARTX
+		UART_Driver_ErrorHandler();
+	}
+}
    ```
 
 ## Ejemplo mínimo
