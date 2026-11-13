@@ -352,11 +352,14 @@ t_{\text{SLOT}} &\ge 60\ \mu\text{s} \quad (\text{Duración total de cada Time S
 
 ### 2. Conversión Digital de Temperatura
 
-El Scratchpad entrega los primeros 2 bytes con la temperatura en formato de punto fijo complemento a dos (16 bits) con el bit de menor peso ($LSB$) equivalente a $0.0625^\circ\text{C}$ ($1/16^\circ\text{C}$):
+El Scratchpad entrega los primeros 2 bytes con la temperatura en formato de punto fijo en complemento a dos (16 bits), con el bit de menor peso ($LSB$) equivalente a $0.0625\ ^\circ\mathrm{C}$ ($1/16\ ^\circ\mathrm{C}$). Se definen:
 
-$$T_{\text{raw}} = (\text{Byte}_1 \ll 8) \mid \text{Byte}_0$$
+- $B_0$ y $B_1$: byte menos y más significativo del Scratchpad (`Byte0` y `Byte1`).
+- $T_{\text{raw}}$: valor de 16 bits interpretado **con signo** (cast a `int16_t` en el código).
 
-$$T_{\text{Celsius}} = \frac{(\text{int16\_t}) \, T_{\text{raw}}}{16.0}$$
+$$T_{\text{raw}} = \left(B_1 \ll 8\right) \mid B_0$$
+
+$$T_{^\circ\mathrm{C}} = \frac{T_{\text{raw}}}{16}$$
 
 ---
 
