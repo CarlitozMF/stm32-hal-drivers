@@ -174,9 +174,14 @@ $$\text{Matriz de Cuadratura } K = \begin{pmatrix}
 
 ### 2. Acumulación y Detent Mecánico
 
-Dado que un *clic* físico del encoder KY-040 genera $4$ cambios de estado consecutivos en los flancos, la posición se incrementa solo al completar el número de pasos definido:
+Dado que un *clic* físico del encoder KY-040 genera $4$ cambios de estado consecutivos en los flancos, la posición se incrementa solo al completar el número de pasos definido. Se definen:
 
-$$\text{Posición}_{k+1} = \text{Clamp}\left(\text{Posición}_k \pm 1, \; \text{min\_val}, \; \text{max\_val}\right) \quad \text{cuando} \quad |\text{accum}| \ge \text{KY040\_STEPS\_PER\_DETENT}$$
+- $P_k$: posición actual (`position` en el código).
+- $P_{\min}$ y $P_{\max}$: límites de la posición (`min_val` y `max_val`).
+- $A$: acumulador de pasos (`accum`).
+- $S_{\text{det}}$: pasos por detent (`KY040_STEPS_PER_DETENT`).
+
+$$P_{k+1} = \operatorname{clamp}\left(P_k \pm 1,\; P_{\min},\; P_{\max}\right) \quad \text{cuando} \quad |A| \ge S_{\text{det}}$$
 
 ---
 
