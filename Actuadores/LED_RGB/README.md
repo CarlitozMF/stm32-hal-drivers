@@ -62,23 +62,39 @@ Para evitar parpadeos visibles en la vista (*flicker*), la frecuencia del PWM de
 
 La fórmula general para calcular la frecuencia de PWM en STM32 es:
 
-$$f_{\text{PWM}} = \frac{f_{\text{TIM\_CLK}}}{(PSC + 1) \times (ARR + 1)}$$
+```math
+f_{\text{PWM}} = \frac{f_{\text{TIM\_CLK}}}{(PSC + 1) \times (ARR + 1)}
+```
 
 Dado que fijamos el período en $ARR = 999$ ($ARR + 1 = 1000$), la fórmula del **Prescaler ($PSC$)** se simplifica a:
 
-$$PSC = \frac{f_{\text{TIM\_CLK}}}{1000 \times f_{\text{PWM}}} - 1$$
+```math
+PSC = \frac{f_{\text{TIM\_CLK}}}{1000 \times f_{\text{PWM}}} - 1
+```
 
 ### Ejemplos según la familia del Microcontrolador:
 
 1. **NUCLEO-F439ZI (SYSCLK = 180 MHz, TIM4 en APB1 Bus):**
    - El reloj del APB1 corre a $45\text{ MHz}$ ($PCLK1 = 45\text{ MHz}$, divisor APB1 = 4). Cuando el prescaler de APB1 es mayor que 1, el reloj que alimenta a los Timers de APB1 (TIM2-TIM7, TIM12-TIM14) se multiplica x2:
-     $$f_{\text{TIM\_CLK}} = 2 \times 45\text{ MHz} = 90\text{ MHz}$$
+     
+     ```math
+     f_{\text{TIM\_CLK}} = 2 \times 45\text{ MHz} = 90\text{ MHz}
+     ```
+
    - Para obtener $f_{\text{PWM}} = 2\text{ kHz}$:
-     $$PSC = \frac{90\text{ MHz}}{1000 \times 2000\text{ Hz}} - 1 = \frac{90.000.000}{2.000.000} - 1 = 45 - 1 = 44$$
+
+    ```math
+    PSC = \frac{90\text{ MHz}}{1000 \times 2000\text{ Hz}} - 1 = \frac{90.000.000}{2.000.000} - 1 = 45 - 1 = 44
+    ```
    - Configuración en CubeMX: `Prescaler = 44`, `Counter Period (ARR) = 999`.
 
 2. **STM32F103 Blue Pill (SYSCLK = 72 MHz, TIM2-TIM4 en APB1 Bus):**
-   - $PCLK1 = 36\text{ MHz}$ (Divisor APB1 = 2) $\rightarrow f_{\text{TIM\_CLK}} = 2 \times 36\text{ MHz} = 72\text{ MHz}$.
+   - $PCLK1 = 36\text{ MHz}$ (Divisor APB1 = 2) 
+   
+   ```math
+     f_{\mathrm{TIM\_CLK}} = 2 \times 36\text{ MHz} = 72\text{ MHz}
+   ```
+   
    - Para $f_{\text{PWM}} = 1\text{ kHz}$:
      $$PSC = \frac{72\text{ MHz}}{1000 \times 1000\text{ Hz}} - 1 = 72 - 1 = 71$$
    - Configuración en CubeMX: `Prescaler = 71`, `Counter Period (ARR) = 999`.

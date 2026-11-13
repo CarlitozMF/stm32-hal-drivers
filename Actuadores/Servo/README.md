@@ -61,42 +61,48 @@ Soporta control individual y por grupos sincronizados (*Kinematic Servo Groups*)
 
 ## Configuración del Timer y Cálculo del Prescaler ($PSC$)
 
-Para que el servo responda correctamente, la señal PWM debe tener una frecuencia de **50 Hz** ($T = 20\text{ ms}$). Se recomienda configurar el contador del timer para que **1 tick equivalga a $1\ \mu\text{s}$**, de forma que los valores de $CCR$ correspondan directamente al pulso en microsegundos (ejemplo: $1500\ \mu\text{s} \rightarrow CCR = 1500$).
+Para que el servo responda correctamente, la señal PWM debe tener una frecuencia de **50 Hz** ($T = 20\ \text{ms}$). Se recomienda configurar el contador del timer para que **1 tick equivalga a $1\ \mu\text{s}$**, de forma que los valores de $CCR$ correspondan directamente al pulso en microsegundos (ejemplo: $1500\ \mu\text{s} \rightarrow CCR = 1500$).
 
 ### Fórmula General de Frecuencia PWM:
-$$f_{\text{PWM}} = \frac{f_{\text{TIM\_CLK}}}{(PSC + 1) \times (ARR + 1)}$$
+
+```math
+f_{\text{PWM}} = \frac{f_{\text{TIM}}}{(PSC + 1) \times (ARR + 1)}
+```
 
 Si fijamos el período a **20 ms** con ticks de $1\ \mu\text{s}$, el registro **Auto-Reload Register (ARR)** se configura en:
-$$ARR = 19999 \quad (ARR + 1 = 20000 \text{ cuentas})$$
 
-### Determinación de $f_{\text{TIM\_CLK}}$ según el bus APB:
+```math
+ARR = 19999 \quad (ARR + 1 = 20000\ \text{cuentas})
+```
+
+### Determinación de $f_{\text{TIM}}$ según el bus APB:
 > **¡Atención con los divisores de bus (APB1 / APB2)!**  
-> En STM32, el reloj que alimenta a los timers ($f_{\text{TIM\_CLK}}$) NO SIEMPRE es igual a la frecuencia del bus APB.  
-> - Si el prescaler del bus APB correspondiente es **/1**, $f_{\text{TIM\_CLK}} = f_{\text{APB}}$.  
-> - Si el prescaler del bus APB correspondiente es **distinto de 1** (ej. /2 o /4), el reloj del Timer se **multiplica automáticamente por 2** ($f_{\text{TIM\_CLK}} = 2 \times f_{\text{APB}}$).
+> En STM32, el reloj que alimenta a los timers ($f_{\text{TIM}}$) NO SIEMPRE es igual a la frecuencia del bus APB.  
+> - Si el prescaler del bus APB correspondiente es **/1**, $f_{\text{TIM}} = f_{\text{APB}}$.  
+> - Si el prescaler del bus APB correspondiente es **distinto de 1** (ej. /2 o /4), el reloj del Timer se **multiplica automáticamente por 2** ($f_{\text{TIM}} = 2 \times f_{\text{APB}}$).
 
-Para obtener $1\ \mu\text{s}$ por tick ($f_{\text{cnt}} = 1\text{ MHz}$), el Prescaler se calcula como:
+Para obtener $1\ \mu\text{s}$ por tick ($f_{\text{cnt}} = 1\ \text{MHz}$), el Prescaler se calcula como:
 
-$$PSC = \frac{f_{\text{TIM\_CLK}}}{1.000.000} - 1$$
+$$PSC = \frac{f_{\text{TIM}}}{10^6} - 1$$
 
 ---
 
 ### Ejemplos Prácticos de Cálculo del Prescaler:
 
 #### 1. NUCLEO-F439ZI (TIM3 en Bus APB1, SYSCLK = 180 MHz)
-- Reloj del bus APB1: $PCLK1 = 45\text{ MHz}$ (Divisor APB1 = /4).
+- Reloj del bus APB1: $PCLK1 = 45\ \text{MHz}$ (Divisor APB1 = /4).
 - Como el divisor APB1 es $> 1$, la frecuencia para los Timers de APB1 se duplica:
-  $$f_{\text{TIM\_CLK}} = 2 \times 45\text{ MHz} = 90\text{ MHz}$$
+  $$f_{\text{TIM}} = 2 \times 45\ \text{MHz} = 90\ \text{MHz}$$
 - Cálculo del Prescaler ($PSC$):
-  $$PSC = \frac{90.000.000}{1.000.000} - 1 = 90 - 1 = 89$$
+  $$PSC = \frac{90 \times 10^6}{10^6} - 1 = 90 - 1 = 89$$
 - **Configuración en CubeMX:** `Prescaler = 89`, `Counter Period (ARR) = 19999`.
 
 #### 2. STM32F103 Blue Pill (TIM3 en Bus APB1, SYSCLK = 72 MHz)
-- Reloj del bus APB1: $PCLK1 = 36\text{ MHz}$ (Divisor APB1 = /2).
+- Reloj del bus APB1: $PCLK1 = 36\ \text{MHz}$ (Divisor APB1 = /2).
 - Como el divisor APB1 es $> 1$, el reloj del timer se duplica:
-  $$f_{\text{TIM\_CLK}} = 2 \times 36\text{ MHz} = 72\text{ MHz}$$
+  $$f_{\text{TIM}} = 2 \times 36\ \text{MHz} = 72\ \text{MHz}$$
 - Cálculo del Prescaler ($PSC$):
-  $$PSC = \frac{72.000.000}{1.000.000} - 1 = 72 - 1 = 71$$
+  $$PSC = \frac{72 \times 10^6}{10^6} - 1 = 72 - 1 = 71$$
 - **Configuración en CubeMX:** `Prescaler = 71`, `Counter Period (ARR) = 19999`.
 
 ---
